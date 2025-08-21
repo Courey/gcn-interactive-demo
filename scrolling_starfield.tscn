@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dec8p2s1lotb8"]
+
+[ext_resource type="PackedScene" uid="uid://dty1xk6on7guf" path="res://star_field.tscn" id="1_xd7oe"]
+
+[node name="ScrollingStarfield" type="Node2D"]
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.01, 1)
+repeat_size = Vector2(1920, 0)
+autoscroll = Vector2(-50, 0)
+repeat_times = 2
+
+[node name="StarField" parent="Parallax2D" instance=ExtResource("1_xd7oe")]

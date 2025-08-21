@@ -1,0 +1,47 @@
+[gd_scene load_steps=9 format=3 uid="uid://ck57c88aqqfx2"]
+
+[ext_resource type="Shader" uid="uid://bw6fq2c45xr06" path="res://shaders/large_star_field.gdshader" id="1_bbi0e"]
+[ext_resource type="Script" uid="uid://b3f0bc4psw6qs" path="res://rotating_star_field.gd" id="1_c1ipb"]
+[ext_resource type="Shader" uid="uid://ba6xcygwib32b" path="res://shaders/transparent_circle.gdshader" id="3_dmdho"]
+[ext_resource type="PackedScene" uid="uid://cf8q2ceyjr4aa" path="res://event.tscn" id="5_5rhwl"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6qdpb"]
+noise_type = 0
+frequency = 0.2564
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ojtol"]
+width = 2203
+height = 2203
+noise = SubResource("FastNoiseLite_6qdpb")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6hl01"]
+shader = ExtResource("1_bbi0e")
+shader_parameter/resolution = Vector2(2203, 2203)
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_ojtol")
+shader_parameter/density = 20.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bl3b3"]
+shader = ExtResource("3_dmdho")
+shader_parameter/resolution = Vector2(1920, 1080)
+
+[node name="RotatingStarField" type="Node2D"]
+script = ExtResource("1_c1ipb")
+
+[node name="RotationNode" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="RotationNode"]
+material = SubResource("ShaderMaterial_6hl01")
+offset_left = -2203.0
+offset_top = -2203.0
+scale = Vector2(2, 2)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_bl3b3")
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 1)
+
+[node name="Events" type="Node2D" parent="."]
+
+[node name="Event" parent="Events" instance=ExtResource("5_5rhwl")]
+position = Vector2(960, 500)
