@@ -5,6 +5,7 @@ extends Node2D
 @export var target_speed := 300.0
 @export var observation_radius = 100
 @export var player_color:Color
+@export var start_position:Vector2 = Vector2.ZERO
 
 @onready var target = $Target
 @onready var light_cone = $LightCone
@@ -12,8 +13,10 @@ extends Node2D
 @onready var coneShader = $Target/TargetFocus/CollisionShape2D.material as ShaderMaterial
 @onready var timer = $InactiveTimeout
 
+signal observe
 
 func _ready():
+	position = start_position
 	player_color = player_color if player_color else Color(randf(), randf(), randf(), .5)
 	collision_shape.shape.radius = observation_radius
 	coneShader.set_shader_parameter('circle_color',player_color) 
@@ -31,6 +34,8 @@ func _input(event):
 		if (!active):
 			active = true
 			light_cone.modulate.a = .5
+		else:
+			observe.emit(self)
 		
 	
 	# Restart the timeout counter for inactive players
@@ -78,6 +83,7 @@ func draw_arms() -> PackedVector2Array:
 	])
 
 
-
 func _on_inactive_timeout_timeout() -> void:
 	active = false
+	target.global_position = start_position
+	light_cone.polygon = draw_arms()

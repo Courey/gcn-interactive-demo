@@ -24,7 +24,7 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Target/TargetFocus"]
 material = SubResource("ShaderMaterial_4flbx")
 shape = SubResource("CircleShape2D_onrkg")
-debug_color = Color(2.98411e-06, 0.588465, 0.686703, 0.42)
+debug_color = Color(0, 0.588235, 0.686275, 0.529412)
 
 [node name="InactiveTimeout" type="Timer" parent="."]
 wait_time = 10.0

@@ -1,18 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://cf8q2ceyjr4aa"]
+[gd_scene load_steps=4 format=3 uid="uid://cf8q2ceyjr4aa"]
 
 [ext_resource type="Script" uid="uid://doaw0cxx2f61c" path="res://event.gd" id="1_wi3ac"]
-[ext_resource type="Script" uid="uid://cxcqcaqq5dv78" path="res://Selectable.gd" id="2_ruury"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mri8j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_civpy"]
-radius = 32.93
+radius = 5.0
 
 [node name="Event" type="Node2D"]
 script = ExtResource("1_wi3ac")
 
 [node name="EventArea" type="Area2D" parent="."]
-script = ExtResource("2_ruury")
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EventArea"]
 material = SubResource("CanvasItemMaterial_mri8j")
@@ -20,3 +19,4 @@ shape = SubResource("CircleShape2D_civpy")
 debug_color = Color(0.822454, 0.286281, 0.708609, 0.42)
 
 [connection signal="area_entered" from="EventArea" to="." method="_on_event_area_area_entered"]
+[connection signal="area_exited" from="EventArea" to="." method="_on_event_area_area_exited"]

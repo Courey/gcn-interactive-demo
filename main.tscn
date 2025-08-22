@@ -1,8 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://c0yvffnohn8tx"]
+[gd_scene load_steps=8 format=3 uid="uid://c0yvffnohn8tx"]
 
 [ext_resource type="Script" uid="uid://c3s7qpngav0qj" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://ck57c88aqqfx2" path="res://rotating_star_field.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://jdk6c6id5gv" path="res://player.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://cf8q2ceyjr4aa" path="res://event.tscn" id="3_lquwl"]
+[ext_resource type="Shader" uid="uid://ba6xcygwib32b" path="res://shaders/transparent_circle.gdshader" id="4_1bvp3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lquwl"]
+shader = ExtResource("4_1bvp3")
+shader_parameter/resolution = Vector2(1920, 1080)
 
 [sub_resource type="LabelSettings" id="LabelSettings_lquwl"]
 font_size = 100
@@ -13,30 +19,42 @@ script = ExtResource("1_1bvp3")
 [node name="RotatingStarField" parent="." instance=ExtResource("1_ig7tw")]
 OFFSET_OPTIONS = 1
 
+[node name="Events" type="Node2D" parent="."]
+
+[node name="Event" parent="Events" instance=ExtResource("3_lquwl")]
+visible = false
+position = Vector2(960, 500)
+
 [node name="Players" type="Node2D" parent="."]
 
 [node name="Player1" parent="Players" instance=ExtResource("2_h2yge")]
-position = Vector2(975, 1074)
 active = true
 observation_radius = 50
+start_position = Vector2(975, 1074)
 
 [node name="Player2" parent="Players" instance=ExtResource("2_h2yge")]
-position = Vector2(432, 537)
 rotation = 1.5708
 input_prefix = "p2"
 observation_radius = 50
+start_position = Vector2(432, 537)
 
 [node name="Player3" parent="Players" instance=ExtResource("2_h2yge")]
-position = Vector2(975, 0)
 rotation = 3.14159
 input_prefix = "p3"
 observation_radius = 50
+start_position = Vector2(975, 0)
 
 [node name="Player4" parent="Players" instance=ExtResource("2_h2yge")]
-position = Vector2(1490, 537)
 rotation = -1.5708
 input_prefix = "p4"
 observation_radius = 50
+start_position = Vector2(1490, 537)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_lquwl")
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 1)
 
 [node name="Score" type="Label" parent="."]
 offset_right = 480.0

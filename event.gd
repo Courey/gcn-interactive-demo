@@ -1,8 +1,10 @@
 extends Node2D
 
-var player_in_area = false
-@export var location: Vector2
+signal player_over
+signal player_exited
 
+@export var location: Vector2
+@export var points: int = 1
 
 func _ready() -> void:
 	position = location
@@ -10,8 +12,10 @@ func _ready() -> void:
 
 
 func _on_event_area_area_entered(area: Area2D) -> void:
-	#pass # Replace with function body.
-	print("Event area entered: ")
-	print(area.name)
-	print(area.get_parent().get_parent().name)
-	#if (area.name == "")
+	var player = area.get_parent().get_parent() 
+	player_over.emit(self, player)
+
+
+func _on_event_area_area_exited(area: Area2D) -> void:
+	var player = area.get_parent().get_parent() 
+	player_exited.emit(self, player)	
