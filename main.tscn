@@ -15,9 +15,10 @@ font_size = 100
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_1bvp3")
+SELECTED_OFFSET = 1
+EVENTS_LIMIT = 20
 
 [node name="RotatingStarField" parent="." instance=ExtResource("1_ig7tw")]
-OFFSET_OPTIONS = 1
 
 [node name="Events" type="Node2D" parent="."]
 

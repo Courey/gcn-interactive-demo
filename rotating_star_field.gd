@@ -1,18 +1,18 @@
 extends Node2D
 
-# Figure something out with this
-const OFFSET_MAP = [
-	Vector2(960,540),
-	Vector2(0,0)
-]
-
-@export_enum ("CENTER:0","CORNER:1") var OFFSET_OPTIONS = 0
-
+@export var ROTATION_NODE_POSITION = Vector2.ZERO
 @export var SPEED = 0.05
 
+@onready var RotationNode = $RotationNode
+
+
 func _ready() -> void:
-	$RotationNode.position = OFFSET_MAP[$".".OFFSET_OPTIONS]
+	pass
+	
+func initialize_with_set_values():
+	print(ROTATION_NODE_POSITION)
+	RotationNode.position = ROTATION_NODE_POSITION 
 
 
 func _process(delta: float) -> void:
-	$RotationNode.rotate(SPEED * delta)
+	RotationNode.rotate(SPEED * delta)

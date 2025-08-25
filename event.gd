@@ -5,11 +5,14 @@ signal player_exited
 
 @export var location: Vector2
 @export var points: int = 1
+@export var SPEED = 0.05
+@export var ROTATION_ORIGIN = Vector2.ZERO
+
 
 func _ready() -> void:
-	position = location
+	global_position = location
 	add_to_group("selectable")
-
+	
 
 func _on_event_area_area_entered(area: Area2D) -> void:
 	var player = area.get_parent().get_parent() 
