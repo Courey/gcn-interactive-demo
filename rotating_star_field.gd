@@ -10,7 +10,6 @@ func _ready() -> void:
 	pass
 	
 func initialize_with_set_values():
-	print(ROTATION_NODE_POSITION)
 	RotationNode.position = ROTATION_NODE_POSITION 
 
 

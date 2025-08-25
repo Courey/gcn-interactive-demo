@@ -19,7 +19,7 @@ func _ready():
 	position = start_position
 	player_color = player_color if player_color else Color(randf(), randf(), randf(), .5)
 	collision_shape.shape.radius = observation_radius
-	coneShader.set_shader_parameter('circle_color',player_color) 
+	coneShader.set_shader_parameter('circle_color', player_color) 
 	
 	light_cone.polygon = PackedVector2Array([
 		Vector2.ZERO,

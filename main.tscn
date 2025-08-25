@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://c0yvffnohn8tx"]
+[gd_scene load_steps=7 format=3 uid="uid://c0yvffnohn8tx"]
 
 [ext_resource type="Script" uid="uid://c3s7qpngav0qj" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://ck57c88aqqfx2" path="res://rotating_star_field.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://jdk6c6id5gv" path="res://player.tscn" id="2_h2yge"]
-[ext_resource type="PackedScene" uid="uid://cf8q2ceyjr4aa" path="res://event.tscn" id="3_lquwl"]
 [ext_resource type="Shader" uid="uid://ba6xcygwib32b" path="res://shaders/transparent_circle.gdshader" id="4_1bvp3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lquwl"]
@@ -21,10 +20,6 @@ EVENTS_LIMIT = 20
 [node name="RotatingStarField" parent="." instance=ExtResource("1_ig7tw")]
 
 [node name="Events" type="Node2D" parent="."]
-
-[node name="Event" parent="Events" instance=ExtResource("3_lquwl")]
-visible = false
-position = Vector2(960, 500)
 
 [node name="Players" type="Node2D" parent="."]
 

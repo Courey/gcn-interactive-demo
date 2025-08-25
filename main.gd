@@ -46,32 +46,26 @@ func _process(delta: float) -> void:
 	
 func create_new_event():
 	var newEvent = Event.instantiate()
-	newEvent.set(
-		"location", 
-		get_random_point_in_circle() if SELECTED_OFFSET == 0 else get_random_point_in_disk()
-	)
+	newEvent.set("location", get_random_point())
 	Events.add_child(newEvent)
 	newEvent.connect('player_over', _on_event_player_over)
 	newEvent.connect('player_exited', _on_player_exited)
 
 
-func get_random_point_in_disk() -> Vector2:
-	var center_vector = get_viewport_rect().size / 2.
-	var scaled_unit_vector = center_vector.normalized() * (center_vector.y)
-	var inner_radius = center_vector - scaled_unit_vector
-	var outer_radius = center_vector + scaled_unit_vector
+func get_random_point() -> Vector2:
+	var center_vector = get_viewport_rect().size / 2. # Center of screen
 	var angle = randf_range(0, TAU)
-	var distance = randf_range(inner_radius.length(), outer_radius.length())
-	return Vector2.ZERO + Vector2.from_angle(angle) * distance
-
-
-func get_random_point_in_circle() -> Vector2:
-	var center_vector = get_viewport_rect().size / 2
-	var radius = center_vector.y
-	var angle = randf_range(0, TAU)
-	var distance = randf() * radius 
-	return center_vector + (Vector2.from_angle(angle) * distance)
-
+	if SELECTED_OFFSET == 0:
+		var radius = center_vector.y
+		var distance = randf() * radius 
+		return center_vector + Vector2.from_angle(angle) * distance
+	else:
+		var scaled_unit_vector = center_vector.normalized() * (center_vector.y)
+		var inner_radius = center_vector - scaled_unit_vector
+		var outer_radius = center_vector + scaled_unit_vector
+		var distance = randf_range(inner_radius.length(), outer_radius.length())
+		return Vector2.ZERO + Vector2.from_angle(angle) * distance
+	
 
 func _on_event_player_over(event:Node2D, player:Node2D) -> void:
 	target_map[player.name].append(event)
