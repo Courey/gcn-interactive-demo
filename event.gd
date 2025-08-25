@@ -11,7 +11,6 @@ signal player_exited
 
 func _ready() -> void:
 	global_position = location
-	add_to_group("selectable")
 	
 
 func _on_event_area_area_entered(area: Area2D) -> void:

@@ -56,7 +56,6 @@ func create_new_event():
 
 
 func get_random_point_in_disk() -> Vector2:
-	print("Getting point in disk")
 	var center_vector = get_viewport_rect().size / 2.
 	var scaled_unit_vector = center_vector.normalized() * (center_vector.y)
 	var inner_radius = center_vector - scaled_unit_vector
@@ -67,7 +66,6 @@ func get_random_point_in_disk() -> Vector2:
 
 
 func get_random_point_in_circle() -> Vector2:
-	print("Getting point in circle")
 	var center_vector = get_viewport_rect().size / 2
 	var radius = center_vector.y
 	var angle = randf_range(0, TAU)
