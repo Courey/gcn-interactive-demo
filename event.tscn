@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cf8q2ceyjr4aa"]
+[gd_scene load_steps=5 format=3 uid="uid://cf8q2ceyjr4aa"]
 
 [ext_resource type="Script" uid="uid://doaw0cxx2f61c" path="res://event.gd" id="1_wi3ac"]
+[ext_resource type="Texture2D" uid="uid://ber1sw04xxcjp" path="res://art/burst.png" id="2_ruury"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mri8j"]
 
@@ -18,5 +19,11 @@ material = SubResource("CanvasItemMaterial_mri8j")
 shape = SubResource("CircleShape2D_civpy")
 debug_color = Color(0.822454, 0.286281, 0.708609, 0.42)
 
+[node name="DecayTimer" type="Timer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ruury")
+
 [connection signal="area_entered" from="EventArea" to="." method="_on_event_area_area_entered"]
 [connection signal="area_exited" from="EventArea" to="." method="_on_event_area_area_exited"]
+[connection signal="timeout" from="DecayTimer" to="." method="_on_decay_timer_timeout"]

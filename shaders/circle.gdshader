@@ -11,6 +11,3 @@ void fragment() {
 	float mask = circle(UV, 0.5, 0.005);
 	COLOR = circle_color * mask;
 }
-
-
-

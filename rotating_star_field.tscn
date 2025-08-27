@@ -1,11 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://ck57c88aqqfx2"]
+[gd_scene load_steps=7 format=3 uid="uid://ck57c88aqqfx2"]
 
 [ext_resource type="Shader" uid="uid://bw6fq2c45xr06" path="res://shaders/large_star_field.gdshader" id="1_bbi0e"]
 [ext_resource type="Script" uid="uid://b3f0bc4psw6qs" path="res://rotating_star_field.gd" id="1_c1ipb"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c1ipb"]
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_6qdpb"]
 noise_type = 0
-frequency = 0.2564
+frequency = 0.2907
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ojtol"]
 width = 2203
@@ -19,6 +21,7 @@ shader_parameter/noise_texture = SubResource("NoiseTexture2D_ojtol")
 shader_parameter/density = 20.0
 
 [node name="RotatingStarField" type="Node2D"]
+material = SubResource("ShaderMaterial_c1ipb")
 script = ExtResource("1_c1ipb")
 
 [node name="RotationNode" type="Node2D" parent="."]
