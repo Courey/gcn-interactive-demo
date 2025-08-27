@@ -20,11 +20,11 @@ const OFFSET_MAP = [
 
 var target_map:Dictionary = {}
 
-
 func _ready():
 	randomize() 
 
 	for player in Players.get_children():
+		player.initialize_with_set_values()
 		player.connect("observe",_on_player_observe)
 		target_map[player.name] = []
 		
@@ -55,16 +55,9 @@ func create_new_event():
 func get_random_point() -> Vector2:
 	var center_vector = get_viewport_rect().size / 2. # Center of screen
 	var angle = randf_range(0, TAU)
-	if SELECTED_OFFSET == 0:
-		var radius = center_vector.y
-		var distance = randf() * radius 
-		return center_vector + Vector2.from_angle(angle) * distance
-	else:
-		var scaled_unit_vector = center_vector.normalized() * (center_vector.y)
-		var inner_radius = center_vector - scaled_unit_vector
-		var outer_radius = center_vector + scaled_unit_vector
-		var distance = randf_range(inner_radius.length(), outer_radius.length())
-		return Vector2.ZERO + Vector2.from_angle(angle) * distance
+	var radius = center_vector.y
+	var distance = randf() * radius 
+	return center_vector + Vector2.from_angle(angle) * distance
 	
 
 func _on_event_player_over(event:Node2D, player:Node2D) -> void:

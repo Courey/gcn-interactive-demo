@@ -25,25 +25,24 @@ EVENTS_LIMIT = 20
 
 [node name="Player1" parent="Players" instance=ExtResource("2_h2yge")]
 active = true
-observation_radius = 50
+player_color = Color(0.792157, 0, 0, 1)
 start_position = Vector2(975, 1074)
+exposure_time = 5
+observation_area = Vector2(150, 50)
 
 [node name="Player2" parent="Players" instance=ExtResource("2_h2yge")]
 rotation = 1.5708
 input_prefix = "p2"
-observation_radius = 50
 start_position = Vector2(432, 537)
 
 [node name="Player3" parent="Players" instance=ExtResource("2_h2yge")]
 rotation = 3.14159
 input_prefix = "p3"
-observation_radius = 50
 start_position = Vector2(975, 0)
 
 [node name="Player4" parent="Players" instance=ExtResource("2_h2yge")]
 rotation = -1.5708
 input_prefix = "p4"
-observation_radius = 50
 start_position = Vector2(1490, 537)
 
 [node name="ColorRect" type="ColorRect" parent="."]
