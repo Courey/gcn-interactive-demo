@@ -14,7 +14,6 @@ font_size = 100
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_1bvp3")
-SELECTED_OFFSET = 1
 EVENTS_LIMIT = 20
 
 [node name="RotatingStarField" parent="." instance=ExtResource("1_ig7tw")]
@@ -27,7 +26,6 @@ EVENTS_LIMIT = 20
 active = true
 player_color = Color(0.792157, 0, 0, 1)
 start_position = Vector2(975, 1074)
-exposure_time = 5
 observation_area = Vector2(150, 50)
 
 [node name="Player2" parent="Players" instance=ExtResource("2_h2yge")]

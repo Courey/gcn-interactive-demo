@@ -11,4 +11,3 @@ void fragment() {
 	COLOR = vec4(vec3(stars), 1.0);
 	// Called for every pixel the material is visible on.
 }
-
