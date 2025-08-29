@@ -26,14 +26,15 @@ metadata/_edit_group_ = true
 
 [node name="LightCone" type="Polygon2D" parent="."]
 
-[node name="Target" type="Node2D" parent="."]
+[node name="Target" type="CharacterBody2D" parent="."]
+collision_layer = 2
 
-[node name="TargetFocus" type="Area2D" parent="Target"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Target/TargetFocus"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Target"]
 material = SubResource("ShaderMaterial_i3pqv")
 shape = SubResource("RectangleShape2D_hqtel")
 debug_color = Color(0, 0.588235, 0.686275, 0.529412)
+
+[node name="DetectionNode" type="Node2D" parent="Target"]
 
 [node name="InactiveTimeout" type="Timer" parent="."]
 wait_time = 30.0

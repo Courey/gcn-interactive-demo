@@ -7,14 +7,14 @@ class_name Player extends Node2D
 
 # "Player Stats:
 @export var slew_speed := 300.0
-@export var sensitivity := 1 # Points drained from events per second of observation
+@export var sensitivity := 1
 @export var observation_area = Vector2.ZERO
 
 
-@onready var target = $Target
+@onready var target = $Target as CharacterBody2D
 @onready var light_cone = $LightCone
-@onready var collision_shape = $Target/TargetFocus/CollisionShape2D
-@onready var target_shader = $Target/TargetFocus/CollisionShape2D.material as ShaderMaterial
+@onready var collision_shape = $Target/CollisionShape2D
+@onready var target_shader = $Target/CollisionShape2D.material as ShaderMaterial
 @onready var timer = $InactiveTimeout as Timer
 @onready var sensitivity_timer = $SensitivityTimer as Timer
 
@@ -43,10 +43,6 @@ func _ready():
 
 
 
-func initialize_with_set_values(): # Do we need this?
-	pass
-
-
 func _input(event):
 	if (event.is_action_pressed(input_prefix + "_select")):
 		# Enable player
@@ -59,8 +55,8 @@ func _input(event):
 			abort.emit(self)
 		else:
 			is_observing = true
+			observe.emit(self)
 			sensitivity_timer.start()
-			#observe.emit(self)
 		target_shader.set_shader_parameter('is_observing', is_observing)
 
 
@@ -70,24 +66,22 @@ func _input(event):
 
 
 func _process(delta):
-	if (!active):
-		light_cone.modulate.a = .2
-		return
+	light_cone.polygon = draw_arms()
 
+func _physics_process(delta: float) -> void:
+	if (!active):
+		return
+	# Move target relative to player position
 	if !is_observing:
-		var move_input = Vector2(
+		target.velocity = Vector2(
 			Input.get_action_strength(input_prefix + "_right")
 			- Input.get_action_strength(input_prefix + "_left"),
 			Input.get_action_strength(input_prefix + "_down")
 			- Input.get_action_strength(input_prefix + "_up")
-		)
-
-		# Move target relative to player position
-		var new_target_pos:Vector2 = target.position + move_input * slew_speed * delta
-		target.position = new_target_pos
-
-	light_cone.polygon = draw_arms()
-	#light_cone.rotation = rotation
+		) * slew_speed
+	else:
+		target.velocity = Vector2.ZERO
+	target.move_and_slide()
 
 
 
@@ -137,7 +131,7 @@ func rotate_relative_to_background(rotation_speed) -> void:
 
 func _on_inactive_timeout_timeout() -> void:
 	active = false
-	target.global_position = start_position
+	target.position = start_position
 	light_cone.polygon = draw_arms()
 
 

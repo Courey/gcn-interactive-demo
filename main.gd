@@ -18,14 +18,16 @@ const OFFSET_MAP = [
 @onready var Players = $Players
 @onready var RotatingStarField = $RotatingStarField
 
-var target_map:Dictionary = {}
+var target_map: Dictionary = {}
+var scores: Dictionary = {}
 
 func _ready():
 	randomize()
 
 	for player in Players.get_children():
-		player.initialize_with_set_values()
+		#player.initialize_with_set_values()
 		target_map[player.name] = []
+		scores[player.name] = 0
 		player.connect("observe", _on_player_observe)
 
 	Global.ROTATION_AXIS = OFFSET_MAP[SELECTED_OFFSET]
@@ -33,8 +35,6 @@ func _ready():
 
 	Events.position = Global.ROTATION_AXIS
 
-	for i in range(EVENTS_LIMIT):
-		create_new_event()
 
 
 func _process(delta: float) -> void:
@@ -44,6 +44,11 @@ func _process(delta: float) -> void:
 	ScoreLabel.text = "Score: " + str(score)
 	if (len(Events.get_children()) < EVENTS_LIMIT):
 		create_new_event()
+	score = scores.values().reduce(sum, 0)
+
+
+func sum(accum, number):
+	return accum + number
 
 
 func create_new_event():
@@ -73,8 +78,7 @@ func _on_player_exited(event:Node2D, player:Node2D) -> void:
 
 func _on_player_observe(player:Player):
 	for event in target_map[player.name]:
-		score += player.sensitivity
-		#event.points -= player.sensitivity
+		scores[player.name] += player.sensitivity * event.decay_rate # Does this make sense?
 	player.sensitivity_timer.start()
 
 func rotate_observing_players(rotation_speed):

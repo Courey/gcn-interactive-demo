@@ -13,6 +13,7 @@ script = ExtResource("1_wi3ac")
 
 [node name="EventArea" type="Area2D" parent="."]
 collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EventArea"]
 material = SubResource("CanvasItemMaterial_mri8j")
@@ -24,6 +25,6 @@ debug_color = Color(0.822454, 0.286281, 0.708609, 0.42)
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_ruury")
 
-[connection signal="area_entered" from="EventArea" to="." method="_on_event_area_area_entered"]
-[connection signal="area_exited" from="EventArea" to="." method="_on_event_area_area_exited"]
+[connection signal="body_entered" from="EventArea" to="." method="_on_event_area_body_entered"]
+[connection signal="body_exited" from="EventArea" to="." method="_on_event_area_body_exited"]
 [connection signal="timeout" from="DecayTimer" to="." method="_on_decay_timer_timeout"]

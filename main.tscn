@@ -25,7 +25,7 @@ EVENTS_LIMIT = 20
 [node name="Player1" parent="Players" instance=ExtResource("2_h2yge")]
 active = true
 player_color = Color(0.792157, 0, 0, 1)
-start_position = Vector2(975, 1074)
+start_position = Vector2(975, 1073)
 observation_area = Vector2(150, 50)
 
 [node name="Player2" parent="Players" instance=ExtResource("2_h2yge")]
@@ -36,7 +36,7 @@ start_position = Vector2(432, 537)
 [node name="Player3" parent="Players" instance=ExtResource("2_h2yge")]
 rotation = 3.14159
 input_prefix = "p3"
-start_position = Vector2(975, 0)
+start_position = Vector2(975, 2)
 
 [node name="Player4" parent="Players" instance=ExtResource("2_h2yge")]
 rotation = -1.5708
@@ -54,3 +54,11 @@ offset_right = 480.0
 offset_bottom = 230.0
 text = "Score:"
 label_settings = SubResource("LabelSettings_lquwl")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+visible = false
+position = Vector2(2, 0)
+build_mode = 1
+polygon = PackedVector2Array(960, -6, 1070, 4, 1183, 40, 1286, 98, 1363, 169, 1434, 268, 1477, 373, 1503, 454, 1503, 540, 1488, 675, 1447, 778, 1344, 934, 1282, 984, 1209, 1035, 1151, 1054, 1074, 1074, 969, 1082, 862, 1076, 765, 1057, 682, 1012, 604, 960, 527, 876, 478, 804, 431, 696, 400, 540, 416, 448, 448, 338, 493, 259, 547, 178, 624, 115, 684, 68, 783, 26)
