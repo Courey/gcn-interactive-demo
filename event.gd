@@ -5,9 +5,9 @@ signal player_exited
 
 @export var location: Vector2
 @export var points: int = 10
-@export var decay_rate = 5
+@export var decay_rate:int = 5
 
-@onready var decay_timer = $DecayTimer
+@onready var decay_timer = $DecayTimer as Timer
 @onready var sprite = $Sprite2D as Sprite2D
 
 
@@ -29,21 +29,17 @@ func _process(_delta: float) -> void:
 		queue_free()
 
 
-
 func _on_decay_timer_timeout() -> void:
 	points -= decay_rate
-	decay_timer.start()
 
 
 func _on_event_area_body_entered(body: Node2D) -> void:
-	#print(body.name)
 	if body.name == "Target":
-		var player = body.get_parent()#.get_parent()
+		var player = body.get_parent()
 		player_over.emit(self, player)
-#
-#
+
+
 func _on_event_area_body_exited(body: Node2D) -> void:
-	#print(body.name)
 	if body.name == "Target":
-		var player = body.get_parent()#.get_parent()
+		var player = body.get_parent()
 		player_exited.emit(self, player)

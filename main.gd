@@ -13,9 +13,9 @@ const OFFSET_MAP = [
 @export var SPEED = 0.05
 @export var EVENTS_LIMIT = 10
 
-@onready var ScoreLabel = $Score
-@onready var Events = $Events
-@onready var Players = $Players
+@onready var ScoreLabel = $Score as Label
+@onready var Events = $Events as Node2D
+@onready var Players = $Players as Node2D
 @onready var RotatingStarField = $RotatingStarField
 
 var target_map: Dictionary = {}

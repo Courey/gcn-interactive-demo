@@ -1,12 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://jdk6c6id5gv"]
+[gd_scene load_steps=6 format=3 uid="uid://jdk6c6id5gv"]
 
 [ext_resource type="Script" uid="uid://b31gvy8j77mdj" path="res://player.gd" id="1_i3pqv"]
 [ext_resource type="Shader" uid="uid://divubxgbnblr6" path="res://shaders/target_area.gdshader" id="2_onrkg"]
+[ext_resource type="Texture2D" uid="uid://degsa058e8pri" path="res://art/grey_circle.png" id="3_i3pqv"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_i3pqv"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqtel"]
+resource_local_to_scene = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_onrkg"]
 resource_local_to_scene = true
 shader = ExtResource("2_onrkg")
-shader_parameter/player_color = Color(1, 1, 1, 1)
+shader_parameter/player_color = Color(0, 0, 0, 1)
 shader_parameter/border_thickness = 0.05
 shader_parameter/is_observing = false
 shader_parameter/resolution = Vector2(1920, 1080)
@@ -16,10 +20,8 @@ shader_parameter/speed = 2.0
 shader_parameter/contrast = 20.0
 shader_parameter/alpha_threshold = 0.2
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqtel"]
-resource_local_to_scene = true
-
 [node name="Player" type="Node2D"]
+z_index = 1
 script = ExtResource("1_i3pqv")
 observation_area = Vector2(100, 100)
 metadata/_edit_group_ = true
@@ -30,14 +32,17 @@ metadata/_edit_group_ = true
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Target"]
-material = SubResource("ShaderMaterial_i3pqv")
 shape = SubResource("RectangleShape2D_hqtel")
 debug_color = Color(0, 0.588235, 0.686275, 0.529412)
 
 [node name="DetectionNode" type="Node2D" parent="Target"]
 
+[node name="Sprite" type="Sprite2D" parent="Target"]
+material = SubResource("ShaderMaterial_onrkg")
+texture = ExtResource("3_i3pqv")
+
 [node name="InactiveTimeout" type="Timer" parent="."]
-wait_time = 30.0
+wait_time = 15.0
 one_shot = true
 
 [node name="SensitivityTimer" type="Timer" parent="."]
