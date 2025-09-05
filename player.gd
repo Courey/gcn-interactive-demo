@@ -12,7 +12,6 @@ class_name Player extends Node2D
 @export var wavelength = 500 # This may be better as a type (ex: UV, Radio, etc)
 # that can be used to check group collaboration
 
-
 @onready var target = $Target as CharacterBody2D
 @onready var light_cone = $LightCone as Polygon2D
 @onready var collision_shape = $Target/CollisionShape2D as CollisionShape2D
@@ -66,6 +65,7 @@ func _input(event):
 func _process(delta):
 	light_cone.polygon = draw_arms()
 
+
 func _physics_process(delta: float) -> void:
 	if (!active):
 		return
@@ -80,7 +80,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		target.velocity = Vector2.ZERO
 	target.move_and_slide()
-
 
 
 func draw_arms_circular() -> PackedVector2Array:
