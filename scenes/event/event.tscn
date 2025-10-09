@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cf8q2ceyjr4aa"]
 
-[ext_resource type="Script" uid="uid://doaw0cxx2f61c" path="res://event.gd" id="1_wi3ac"]
+[ext_resource type="Script" uid="uid://doaw0cxx2f61c" path="res://scenes/event/event.gd" id="1_wi3ac"]
 [ext_resource type="Texture2D" uid="uid://ber1sw04xxcjp" path="res://art/burst.png" id="2_ruury"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mri8j"]

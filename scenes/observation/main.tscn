@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://c0yvffnohn8tx"]
 
-[ext_resource type="Script" uid="uid://c3s7qpngav0qj" path="res://main.gd" id="1_1bvp3"]
+[ext_resource type="Script" uid="uid://bi1pxjo2rj311" path="res://scenes/observation/main.gd" id="1_64v3t"]
 [ext_resource type="PackedScene" uid="uid://ck57c88aqqfx2" path="res://rotating_star_field.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://jdk6c6id5gv" path="res://player.tscn" id="2_h2yge"]
 [ext_resource type="Shader" uid="uid://ba6xcygwib32b" path="res://shaders/transparent_circle.gdshader" id="4_1bvp3"]
@@ -13,8 +13,7 @@ shader_parameter/resolution = Vector2(1920, 1080)
 font_size = 100
 
 [node name="Main" type="Node2D"]
-script = ExtResource("1_1bvp3")
-EVENTS_LIMIT = 20
+script = ExtResource("1_64v3t")
 
 [node name="RotatingStarField" parent="." instance=ExtResource("1_ig7tw")]
 

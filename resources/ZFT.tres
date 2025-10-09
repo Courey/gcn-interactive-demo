@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Telescope" load_steps=2 format=3 uid="uid://cnm42vreubj54"]
+
+[ext_resource type="Script" uid="uid://b70rxpxqa6sko" path="res://scenes/observatory_selection/telescope.gd" id="1_lgu1u"]
+
+[resource]
+script = ExtResource("1_lgu1u")
+telescope_name = "ZTF"
+position = 0
+field_of_view = 47.0
+sensitivity = 0
+slew_speed = 7.0
+observation_delay = 0
+band = Array[float]([400.0, 900.0])
+metadata/_custom_type_script = "uid://b70rxpxqa6sko"

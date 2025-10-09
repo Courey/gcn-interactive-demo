@@ -1,9 +1,13 @@
 class_name Player extends Node2D
 
 @export var input_prefix := "p1"
-@export var active:bool = false
-@export var player_color:Color
-@export var start_position:Vector2 = Vector2.ZERO
+@export var active: bool = false
+@export var player_color: Color
+@export var start_position: Vector2 = Vector2.ZERO
+
+## Selected Obeservatory
+@export var observatory_index:int
+@export var selected: bool = false
 
 # Player Stats, these will be determined by Observatory selection screen
 @export var slew_speed := 300.0
@@ -25,6 +29,12 @@ signal observe
 signal abort
 
 var is_observing = false
+var id:int
+
+func _init(player_id: int, color: Color):
+	id = player_id
+	input_prefix = 'p%d' % player_id
+	player_color = color
 
 func _ready():
 	position = start_position
@@ -62,11 +72,11 @@ func _input(event):
 	timer.start()
 
 
-func _process(delta):
+func _process(_delta):
 	light_cone.polygon = draw_arms()
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if (!active):
 		return
 	# Move target relative to player position

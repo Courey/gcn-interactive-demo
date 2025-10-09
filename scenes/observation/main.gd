@@ -1,7 +1,7 @@
 extends Node2D
 
 var score = 0
-var Event = preload("res://event.tscn")
+var Event = preload("res://scenes/event/event.tscn")
 
 const OFFSET_MAP = [
 	Vector2(960,540), #This should be dynamic
