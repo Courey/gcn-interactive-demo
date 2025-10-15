@@ -1,6 +1,6 @@
 class_name Player extends Node2D
 
-@export var input_prefix := "p1"
+@export var input_prefix: String = "p1"
 @export var active: bool = false
 @export var player_color: Color
 @export var start_position: Vector2 = Vector2.ZERO
@@ -31,10 +31,15 @@ signal abort
 var is_observing = false
 var id:int
 
-func _init(player_id: int, color: Color):
+func _init():
+	pass
+
+
+func setup(player_id: int, color: Color):
 	id = player_id
 	input_prefix = 'p%d' % player_id
 	player_color = color
+
 
 func _ready():
 	position = start_position
@@ -52,7 +57,7 @@ func _ready():
 
 
 func _input(event):
-	if (event.is_action_pressed(input_prefix + "_select")):
+	if (event.is_action_pressed("ui_select")):
 		# Enable player
 		if (!active):
 			active = true
@@ -82,10 +87,10 @@ func _physics_process(_delta: float) -> void:
 	# Move target relative to player position
 	if !is_observing:
 		target.velocity = Vector2(
-			Input.get_action_strength(input_prefix + "_right")
-			- Input.get_action_strength(input_prefix + "_left"),
-			Input.get_action_strength(input_prefix + "_down")
-			- Input.get_action_strength(input_prefix + "_up")
+			Input.get_action_strength("ui_right")
+			- Input.get_action_strength("ui_left"),
+			Input.get_action_strength("ui_down")
+			- Input.get_action_strength("ui_up")
 		) * slew_speed
 	else:
 		target.velocity = Vector2.ZERO
