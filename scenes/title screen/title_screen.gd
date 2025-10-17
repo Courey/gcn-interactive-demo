@@ -1,9 +1,6 @@
 extends Control
 
-#var next_scene:PackedScene = preload("res://scenes/observation/main.tscn")
-
 func _ready():
-	# Capture input immediately
 	set_process_input(true)
 
 func _input(event):
@@ -13,5 +10,5 @@ func _input(event):
 func _start_game():
 	SceneManager.change_scene_with_transition(
 		self,
-		load("res://scenes/observation/main.tscn")
+		load("res://scenes/observatory_selection/telescope_select.tscn")
 	)

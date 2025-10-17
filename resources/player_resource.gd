@@ -9,13 +9,18 @@ var name: String
 
 var observatory_id: int
 var observatory: Telescope
-var selected:bool = false
+var ready:bool = false
 
 
 func _init():
 	name = "Player%d" % id
 	input_prefix = "p%d" % id
-	active = true
+	#active = true
+
 
 func get_input_prefix():
 	return "p%d" % id
+
+
+func toggle_active():
+	active = !active

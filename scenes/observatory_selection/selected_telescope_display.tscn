@@ -13,73 +13,46 @@ font_size = 10
 [sub_resource type="LabelSettings" id="LabelSettings_3f5lt"]
 font_size = 6
 
-[node name="SelectedTelescopeDisplay" type="Panel"]
+[node name="SelectedTelescopeDisplay" type="PanelContainer"]
 offset_right = 200.0
 offset_bottom = 200.0
 script = ExtResource("1_deceq")
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -84.0
-offset_right = 84.0
-offset_bottom = 23.0
-grow_horizontal = 2
-text = "Select Your Telescope"
+[node name="MainControlBox" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 2
 
-[node name="SelectedObservatoryImage" type="TextureRect" parent="."]
+[node name="MainLabel" type="Label" parent="MainControlBox"]
+layout_mode = 2
+text = "Select Your Telescope"
+horizontal_alignment = 1
+
+[node name="SelectedObservatoryImage" type="TextureRect" parent="MainControlBox"]
 custom_minimum_size = Vector2(80, 80)
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -44.0
-offset_top = 24.0
-offset_right = 44.0
-offset_bottom = 112.0
-grow_horizontal = 2
+layout_mode = 2
 texture = ExtResource("1_21a01")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="ObservatoryLabel" type="Label" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainControlBox"]
 layout_mode = 2
-offset_left = 36.0
-offset_top = 106.0
-offset_right = 164.0
-offset_bottom = 121.0
+alignment = 1
+
+[node name="ObservatoryLabel" type="Label" parent="MainControlBox/HBoxContainer"]
+layout_mode = 2
 text = "Telescope Name"
 label_settings = SubResource("LabelSettings_v4aac")
-metadata/_edit_group_ = true
 
-[node name="PositionLabel" type="Label" parent="."]
+[node name="PositionLabel" type="Label" parent="MainControlBox/HBoxContainer"]
 layout_mode = 2
-offset_left = 36.0
-offset_top = 106.0
-offset_right = 164.0
-offset_bottom = 121.0
 text = "Ground"
 label_settings = SubResource("LabelSettings_spbmw")
 horizontal_alignment = 2
-metadata/_edit_group_ = true
 
-[node name="GridContainer" type="GridContainer" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -64.0
-offset_top = -75.0
-offset_right = 64.0
-offset_bottom = -3.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="GridContainer" type="GridContainer" parent="MainControlBox"]
+layout_mode = 2
 
-[node name="StatBar" type="Control" parent="GridContainer"]
+[node name="StatBar" type="Control" parent="MainControlBox/GridContainer"]
 clip_contents = true
 custom_minimum_size = Vector2(128, 15)
 layout_mode = 2
@@ -90,14 +63,14 @@ value_end = 75.0
 stat_name = "Field of View"
 highlight_color = Color(0.337255, 1, 1, 1)
 
-[node name="Label" type="Label" parent="GridContainer/StatBar"]
+[node name="Label" type="Label" parent="MainControlBox/GridContainer/StatBar"]
 layout_mode = 0
 offset_right = 128.0
 offset_bottom = 9.0
 text = "Stat_1"
 label_settings = SubResource("LabelSettings_3f5lt")
 
-[node name="Background" type="ColorRect" parent="GridContainer/StatBar"]
+[node name="Background" type="ColorRect" parent="MainControlBox/GridContainer/StatBar"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -111,7 +84,7 @@ grow_horizontal = 2
 grow_vertical = 0
 color = Color(0.412152, 0.412152, 0.412152, 1)
 
-[node name="Highlight" type="ColorRect" parent="GridContainer/StatBar"]
+[node name="Highlight" type="ColorRect" parent="MainControlBox/GridContainer/StatBar"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -125,7 +98,7 @@ grow_horizontal = 2
 grow_vertical = 0
 color = Color(0.337255, 1, 1, 0.768627)
 
-[node name="StatBar2" type="Control" parent="GridContainer"]
+[node name="StatBar2" type="Control" parent="MainControlBox/GridContainer"]
 clip_contents = true
 custom_minimum_size = Vector2(128, 15)
 layout_mode = 2
@@ -136,14 +109,14 @@ value_end = 75.0
 stat_name = "Slew Speed"
 highlight_color = Color(0.337255, 1, 1, 1)
 
-[node name="Label" type="Label" parent="GridContainer/StatBar2"]
+[node name="Label" type="Label" parent="MainControlBox/GridContainer/StatBar2"]
 layout_mode = 0
 offset_right = 128.0
 offset_bottom = 9.0
 text = "Stat_1"
 label_settings = SubResource("LabelSettings_3f5lt")
 
-[node name="Background" type="ColorRect" parent="GridContainer/StatBar2"]
+[node name="Background" type="ColorRect" parent="MainControlBox/GridContainer/StatBar2"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -157,7 +130,7 @@ grow_horizontal = 2
 grow_vertical = 0
 color = Color(0.412152, 0.412152, 0.412152, 1)
 
-[node name="Highlight" type="ColorRect" parent="GridContainer/StatBar2"]
+[node name="Highlight" type="ColorRect" parent="MainControlBox/GridContainer/StatBar2"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -171,7 +144,7 @@ grow_horizontal = 2
 grow_vertical = 0
 color = Color(0.337255, 1, 1, 0.768627)
 
-[node name="StatBar3" type="Control" parent="GridContainer"]
+[node name="StatBar3" type="Control" parent="MainControlBox/GridContainer"]
 clip_contents = true
 custom_minimum_size = Vector2(128, 15)
 layout_mode = 2
@@ -182,14 +155,14 @@ value_end = 75.0
 stat_name = "Sensitivity"
 highlight_color = Color(0.337255, 1, 1, 1)
 
-[node name="Label" type="Label" parent="GridContainer/StatBar3"]
+[node name="Label" type="Label" parent="MainControlBox/GridContainer/StatBar3"]
 layout_mode = 0
 offset_right = 128.0
 offset_bottom = 9.0
 text = "Stat_1"
 label_settings = SubResource("LabelSettings_3f5lt")
 
-[node name="Background" type="ColorRect" parent="GridContainer/StatBar3"]
+[node name="Background" type="ColorRect" parent="MainControlBox/GridContainer/StatBar3"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -203,7 +176,7 @@ grow_horizontal = 2
 grow_vertical = 0
 color = Color(0.412152, 0.412152, 0.412152, 1)
 
-[node name="Highlight" type="ColorRect" parent="GridContainer/StatBar3"]
+[node name="Highlight" type="ColorRect" parent="MainControlBox/GridContainer/StatBar3"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -217,7 +190,7 @@ grow_horizontal = 2
 grow_vertical = 0
 color = Color(0.337255, 1, 1, 0.768627)
 
-[node name="StatBar4" type="Control" parent="GridContainer"]
+[node name="StatBar4" type="Control" parent="MainControlBox/GridContainer"]
 clip_contents = true
 custom_minimum_size = Vector2(128, 15)
 layout_mode = 2
@@ -227,14 +200,14 @@ value_start = 50.0
 value_end = 75.0
 highlight_color = Color(0.337255, 1, 1, 1)
 
-[node name="Label" type="Label" parent="GridContainer/StatBar4"]
+[node name="Label" type="Label" parent="MainControlBox/GridContainer/StatBar4"]
 layout_mode = 0
 offset_right = 128.0
 offset_bottom = 9.0
 text = "Stat_1"
 label_settings = SubResource("LabelSettings_3f5lt")
 
-[node name="Background" type="ColorRect" parent="GridContainer/StatBar4"]
+[node name="Background" type="ColorRect" parent="MainControlBox/GridContainer/StatBar4"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -248,7 +221,7 @@ grow_horizontal = 2
 grow_vertical = 0
 color = Color(0.412152, 0.412152, 0.412152, 1)
 
-[node name="Highlight" type="ColorRect" parent="GridContainer/StatBar4"]
+[node name="Highlight" type="ColorRect" parent="MainControlBox/GridContainer/StatBar4"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -261,3 +234,8 @@ offset_right = 64.0
 grow_horizontal = 2
 grow_vertical = 0
 color = Color(0.337255, 1, 1, 0.768627)
+
+[node name="ReadyUpLabel" type="Label" parent="."]
+layout_mode = 2
+text = "Press Any Button To Join"
+horizontal_alignment = 1

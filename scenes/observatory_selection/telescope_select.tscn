@@ -5,11 +5,11 @@
 [ext_resource type="Script" uid="uid://of4mt0dqm8sw" path="res://scenes/observatory_selection/telescope_grid.gd" id="3_8h3wp"]
 [ext_resource type="PackedScene" uid="uid://cdp8ukqiyccgm" path="res://scenes/observatory_selection/selected_telescope_display.tscn" id="4_jm8ys"]
 [ext_resource type="PackedScene" uid="uid://bug6q8xv6do8y" path="res://scenes/observatory_selection/telescope_slot.tscn" id="4_v0ka8"]
-[ext_resource type="Resource" uid="uid://d3hhvy6lacsap" path="res://resources/Hubble.tres" id="5_v0ka8"]
-[ext_resource type="Resource" uid="uid://bauqjtnne5db8" path="res://resources/JWST.tres" id="6_swsw3"]
+[ext_resource type="Resource" uid="uid://d3hhvy6lacsap" path="res://resources/obs_Hubble.tres" id="5_v0ka8"]
+[ext_resource type="Resource" uid="uid://bauqjtnne5db8" path="res://resources/obs_JWST.tres" id="6_swsw3"]
 [ext_resource type="Shader" uid="uid://ba6xcygwib32b" path="res://shaders/transparent_circle.gdshader" id="6_uaqny"]
-[ext_resource type="Resource" uid="uid://hwwqgt24pvrb" path="res://resources/Rubin.tres" id="7_8xw5q"]
-[ext_resource type="Resource" uid="uid://cnm42vreubj54" path="res://resources/ZFT.tres" id="8_w8lk5"]
+[ext_resource type="Resource" uid="uid://hwwqgt24pvrb" path="res://resources/obs_Rubin.tres" id="7_8xw5q"]
+[ext_resource type="Resource" uid="uid://cnm42vreubj54" path="res://resources/obs_ZFT.tres" id="8_w8lk5"]
 [ext_resource type="Resource" uid="uid://dgtwp45fxqhdi" path="res://resources/Player1.tres" id="10_bkch5"]
 [ext_resource type="Resource" uid="uid://cp774eauo6qyo" path="res://resources/Player2.tres" id="11_5rwk1"]
 [ext_resource type="Resource" uid="uid://nxdid1t8m7go" path="res://resources/Player3.tres" id="12_x22ne"]
@@ -35,7 +35,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.473976, 0.473976, 0.473976, 1)
+color = Color(0.212305, 0.212305, 0.212305, 1)
 
 [node name="TelescopeGrid" type="GridContainer" parent="."]
 custom_minimum_size = Vector2(600, 600)
@@ -119,3 +119,24 @@ layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 color = Color(0, 0, 0, 1)
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="StartCountdownLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
