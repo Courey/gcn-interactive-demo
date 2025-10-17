@@ -19,3 +19,6 @@ enum physical_location {
 ## Start and end of observable range in nanometers
 @export var band: Array[float]
 @export var image: Texture2D
+
+func get_location_string():
+	return physical_location.find_key(position)

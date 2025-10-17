@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bug6q8xv6do8y"]
+[gd_scene load_steps=5 format=3 uid="uid://bug6q8xv6do8y"]
 
 [ext_resource type="Texture2D" uid="uid://isea6hpa5fi" path="res://art/slot.png" id="1_bgg7d"]
 [ext_resource type="Script" uid="uid://di5v0sxol7yvd" path="res://scenes/observatory_selection/telescope_slot.gd" id="2_anh4m"]
@@ -7,9 +7,6 @@
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_anh4m"]
 resource_local_to_scene = true
 texture = ExtResource("1_bgg7d")
-
-[sub_resource type="LabelSettings" id="LabelSettings_0vet5"]
-font_size = 12
 
 [node name="TelescopeSlot" type="Panel"]
 custom_minimum_size = Vector2(100, 100)
@@ -36,21 +33,42 @@ grow_vertical = 2
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="PlayerOutline" type="Line2D" parent="."]
+[node name="PlayerOutline1" type="Line2D" parent="."]
 points = PackedVector2Array(4, 4, 96, 4, 96, 96, 4, 96)
 closed = true
 width = 5.0
 default_color = Color(0.537255, 0.513726, 1, 1)
+joint_mode = 2
+
+[node name="PlayerOutline2" type="Line2D" parent="."]
+points = PackedVector2Array(4, 4, 96, 4, 96, 96, 4, 96)
+closed = true
+width = 5.0
+default_color = Color(0.537255, 0.513726, 1, 1)
+joint_mode = 2
+
+[node name="PlayerOutline3" type="Line2D" parent="."]
+points = PackedVector2Array(4, 4, 96, 4, 96, 96, 4, 96)
+closed = true
+width = 5.0
+default_color = Color(0.537255, 0.513726, 1, 1)
+joint_mode = 2
+
+[node name="PlayerOutline4" type="Line2D" parent="."]
+points = PackedVector2Array(4, 4, 96, 4, 96, 96, 4, 96)
+closed = true
+width = 5.0
+default_color = Color(0.537255, 0.513726, 1, 1)
+joint_mode = 2
 
 [node name="Player1" type="Label" parent="."]
 visible = false
 layout_mode = 1
 offset_left = 7.0
 offset_top = 7.0
-offset_right = 22.0
-offset_bottom = 24.0
+offset_right = 26.0
+offset_bottom = 30.0
 text = "P1"
-label_settings = SubResource("LabelSettings_0vet5")
 
 [node name="Player2" type="Label" parent="."]
 visible = false
@@ -65,7 +83,6 @@ offset_bottom = 24.0
 grow_horizontal = 0
 rotation = 1.5708
 text = "P2"
-label_settings = SubResource("LabelSettings_0vet5")
 
 [node name="Player3" type="Label" parent="."]
 visible = false
@@ -83,7 +100,6 @@ grow_horizontal = 0
 grow_vertical = 0
 rotation = 3.14159
 text = "P3"
-label_settings = SubResource("LabelSettings_0vet5")
 
 [node name="Player4" type="Label" parent="."]
 visible = false
@@ -98,6 +114,5 @@ offset_bottom = 10.0
 grow_vertical = 0
 rotation = -1.5708
 text = "P4"
-label_settings = SubResource("LabelSettings_0vet5")
 
 [connection signal="pressed" from="ObservatoryButton" to="." method="_button_pressed"]

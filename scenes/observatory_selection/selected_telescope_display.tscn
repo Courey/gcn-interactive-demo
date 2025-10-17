@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cdp8ukqiyccgm"]
+[gd_scene load_steps=7 format=3 uid="uid://cdp8ukqiyccgm"]
 
 [ext_resource type="Texture2D" uid="uid://j25mkupkulre" path="res://art/TestingImages/Chandra-1.png" id="1_21a01"]
+[ext_resource type="Script" uid="uid://cnt780kg3qa1u" path="res://scenes/observatory_selection/selected_telescope_display.gd" id="1_deceq"]
 [ext_resource type="Script" uid="uid://dpm0xukvqnt3d" path="res://scenes/observatory_selection/stat_bar.gd" id="2_v4aac"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_v4aac"]
@@ -15,6 +16,7 @@ font_size = 6
 [node name="SelectedTelescopeDisplay" type="Panel"]
 offset_right = 200.0
 offset_bottom = 200.0
+script = ExtResource("1_deceq")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -27,7 +29,7 @@ offset_bottom = 23.0
 grow_horizontal = 2
 text = "Select Your Telescope"
 
-[node name="SelectedTelescope" type="TextureRect" parent="."]
+[node name="SelectedObservatoryImage" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 1
 anchors_preset = 5
@@ -42,7 +44,7 @@ texture = ExtResource("1_21a01")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Label2" type="Label" parent="."]
+[node name="ObservatoryLabel" type="Label" parent="."]
 layout_mode = 2
 offset_left = 36.0
 offset_top = 106.0
@@ -52,7 +54,7 @@ text = "Telescope Name"
 label_settings = SubResource("LabelSettings_v4aac")
 metadata/_edit_group_ = true
 
-[node name="Label3" type="Label" parent="."]
+[node name="PositionLabel" type="Label" parent="."]
 layout_mode = 2
 offset_left = 36.0
 offset_top = 106.0

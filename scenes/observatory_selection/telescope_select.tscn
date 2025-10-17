@@ -1,16 +1,19 @@
-[gd_scene load_steps=13 format=3 uid="uid://igr5taqly5ch"]
+[gd_scene load_steps=16 format=3 uid="uid://igr5taqly5ch"]
 
 [ext_resource type="Script" uid="uid://busak7hd601ln" path="res://scenes/observatory_selection/telescope_select.gd" id="1_ge3vk"]
 [ext_resource type="Script" uid="uid://b70rxpxqa6sko" path="res://scenes/observatory_selection/telescope.gd" id="1_rpyu1"]
 [ext_resource type="Script" uid="uid://of4mt0dqm8sw" path="res://scenes/observatory_selection/telescope_grid.gd" id="3_8h3wp"]
-[ext_resource type="PackedScene" uid="uid://cdp8ukqiyccgm" path="res://selected_telescope_display.tscn" id="4_jm8ys"]
-[ext_resource type="Script" uid="uid://d3ruapaau6r2f" path="res://player_cursor.gd" id="4_odewf"]
+[ext_resource type="PackedScene" uid="uid://cdp8ukqiyccgm" path="res://scenes/observatory_selection/selected_telescope_display.tscn" id="4_jm8ys"]
 [ext_resource type="PackedScene" uid="uid://bug6q8xv6do8y" path="res://scenes/observatory_selection/telescope_slot.tscn" id="4_v0ka8"]
 [ext_resource type="Resource" uid="uid://d3hhvy6lacsap" path="res://resources/Hubble.tres" id="5_v0ka8"]
 [ext_resource type="Resource" uid="uid://bauqjtnne5db8" path="res://resources/JWST.tres" id="6_swsw3"]
 [ext_resource type="Shader" uid="uid://ba6xcygwib32b" path="res://shaders/transparent_circle.gdshader" id="6_uaqny"]
 [ext_resource type="Resource" uid="uid://hwwqgt24pvrb" path="res://resources/Rubin.tres" id="7_8xw5q"]
 [ext_resource type="Resource" uid="uid://cnm42vreubj54" path="res://resources/ZFT.tres" id="8_w8lk5"]
+[ext_resource type="Resource" uid="uid://dgtwp45fxqhdi" path="res://resources/Player1.tres" id="10_bkch5"]
+[ext_resource type="Resource" uid="uid://cp774eauo6qyo" path="res://resources/Player2.tres" id="11_5rwk1"]
+[ext_resource type="Resource" uid="uid://nxdid1t8m7go" path="res://resources/Player3.tres" id="12_x22ne"]
+[ext_resource type="Resource" uid="uid://c6jxup0s2ou4r" path="res://resources/Player4.tres" id="13_8lx24"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8h3wp"]
 shader = ExtResource("6_uaqny")
@@ -66,6 +69,7 @@ offset_right = 101.0
 offset_bottom = -21.0
 grow_horizontal = 2
 grow_vertical = 0
+controlling_player = ExtResource("10_bkch5")
 
 [node name="SelectedTelescopeDisplayP2" parent="." instance=ExtResource("4_jm8ys")]
 layout_mode = 1
@@ -78,6 +82,7 @@ offset_right = 841.0
 offset_bottom = 101.0
 grow_vertical = 2
 rotation = 1.5708
+controlling_player = ExtResource("11_5rwk1")
 
 [node name="SelectedTelescopeDisplayP3" parent="." instance=ExtResource("4_jm8ys")]
 layout_mode = 1
@@ -90,6 +95,7 @@ offset_right = 300.0
 offset_bottom = 421.0
 grow_horizontal = 2
 rotation = 3.14159
+controlling_player = ExtResource("12_x22ne")
 
 [node name="SelectedTelescopeDisplayP4" parent="." instance=ExtResource("4_jm8ys")]
 layout_mode = 1
@@ -105,35 +111,7 @@ offset_bottom = 297.0
 grow_horizontal = 0
 grow_vertical = 2
 rotation = -1.5708
-
-[node name="PlayerCursors" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Cursor_Player1" type="Control" parent="PlayerCursors"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("4_odewf")
-
-[node name="Cursor_Player2" type="Control" parent="PlayerCursors"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("4_odewf")
-
-[node name="Cursor_Player3" type="Control" parent="PlayerCursors"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("4_odewf")
-
-[node name="Cursor_Player4" type="Control" parent="PlayerCursors"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("4_odewf")
+controlling_player = ExtResource("13_8lx24")
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_8h3wp")

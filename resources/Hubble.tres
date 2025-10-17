@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_8p6qb")
 telescope_name = "Hubble"
-position = 0
+position = 1
 field_of_view = 0.005
 sensitivity = 0
 slew_speed = 0.017

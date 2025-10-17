@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_cy2pb")
 telescope_name = "JWST"
-position = 0
+position = 1
 field_of_view = 0.004
 sensitivity = 0
 slew_speed = 0.008

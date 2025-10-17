@@ -7,6 +7,10 @@ var input_prefix: String
 var active: bool = false
 var name: String
 
+var observatory_id: int
+var observatory: Telescope
+var selected:bool = false
+
 
 func _init():
 	name = "Player%d" % id
