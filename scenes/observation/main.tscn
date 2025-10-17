@@ -1,9 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0yvffnohn8tx"]
+[gd_scene load_steps=11 format=3 uid="uid://c0yvffnohn8tx"]
 
 [ext_resource type="Script" uid="uid://bi1pxjo2rj311" path="res://scenes/observation/main.gd" id="1_64v3t"]
 [ext_resource type="PackedScene" uid="uid://ck57c88aqqfx2" path="res://rotating_star_field.tscn" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://jdk6c6id5gv" path="res://player.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://jdk6c6id5gv" path="res://scenes/observation/player_observer.tscn" id="2_h2yge"]
 [ext_resource type="Shader" uid="uid://ba6xcygwib32b" path="res://shaders/transparent_circle.gdshader" id="4_1bvp3"]
+[ext_resource type="Resource" uid="uid://dgtwp45fxqhdi" path="res://resources/Player1.tres" id="4_u0tbu"]
+[ext_resource type="Resource" uid="uid://cp774eauo6qyo" path="res://resources/Player2.tres" id="5_g4oh8"]
+[ext_resource type="Resource" uid="uid://nxdid1t8m7go" path="res://resources/Player3.tres" id="6_xq46r"]
+[ext_resource type="Resource" uid="uid://c6jxup0s2ou4r" path="res://resources/Player4.tres" id="7_p2vm5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lquwl"]
 shader = ExtResource("4_1bvp3")
@@ -14,33 +18,36 @@ font_size = 100
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_64v3t")
+SELECTED_OFFSET = 1
 
 [node name="RotatingStarField" parent="." instance=ExtResource("1_ig7tw")]
 
 [node name="Events" type="Node2D" parent="."]
 
-[node name="Players" type="Node2D" parent="."]
+[node name="PlayerObservers" type="Node2D" parent="."]
 
-[node name="Player1" parent="Players" instance=ExtResource("2_h2yge")]
-active = true
-player_color = Color(0.792157, 0, 0, 1)
-start_position = Vector2(975, 1073)
+[node name="PlayerObserver1" parent="PlayerObservers" instance=ExtResource("2_h2yge")]
+position = Vector2(960, 1059)
 observation_area = Vector2(150, 50)
+controlling_player = ExtResource("4_u0tbu")
 
-[node name="Player2" parent="Players" instance=ExtResource("2_h2yge")]
+[node name="PlayerObserver2" parent="PlayerObservers" instance=ExtResource("2_h2yge")]
+position = Vector2(440, 537)
 rotation = 1.5708
-input_prefix = "p2"
-start_position = Vector2(432, 537)
+observation_area = Vector2(150, 50)
+controlling_player = ExtResource("5_g4oh8")
 
-[node name="Player3" parent="Players" instance=ExtResource("2_h2yge")]
+[node name="PlayerObserver3" parent="PlayerObservers" instance=ExtResource("2_h2yge")]
+position = Vector2(961, 21)
 rotation = 3.14159
-input_prefix = "p3"
-start_position = Vector2(975, 2)
+observation_area = Vector2(150, 50)
+controlling_player = ExtResource("6_xq46r")
 
-[node name="Player4" parent="Players" instance=ExtResource("2_h2yge")]
+[node name="PlayerObserver4" parent="PlayerObservers" instance=ExtResource("2_h2yge")]
+position = Vector2(1480, 537)
 rotation = -1.5708
-input_prefix = "p4"
-start_position = Vector2(1490, 537)
+observation_area = Vector2(150, 50)
+controlling_player = ExtResource("7_p2vm5")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_lquwl")

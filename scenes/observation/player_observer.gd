@@ -1,13 +1,8 @@
-class_name Player extends Node2D
-
-@export var input_prefix: String = "p1"
-@export var active: bool = false
-@export var player_color: Color
-@export var start_position: Vector2 = Vector2.ZERO
+class_name PlayerObserver extends Node2D
 
 ## Selected Obeservatory
-@export var observatory_index:int
-@export var selected: bool = false
+@export var observatory_id:int
+#@export var selected: bool = false
 
 # Player Stats, these will be determined by Observatory selection screen
 @export var slew_speed := 300.0
@@ -15,6 +10,7 @@ class_name Player extends Node2D
 @export var observation_area = Vector2.ZERO
 @export var wavelength = 500 # This may be better as a type (ex: UV, Radio, etc)
 # that can be used to check group collaboration
+@export var controlling_player: PlayerResource
 
 @onready var target = $Target as CharacterBody2D
 @onready var light_cone = $LightCone as Polygon2D
@@ -25,42 +21,31 @@ class_name Player extends Node2D
 @onready var sensitivity_timer = $SensitivityTimer as Timer
 
 
+
 signal observe
 signal abort
 
-var is_observing = false
-var id:int
-
-func _init():
-	pass
-
-
-func setup(player_id: int, color: Color):
-	id = player_id
-	input_prefix = 'p%d' % player_id
-	player_color = color
+var is_observing := false
 
 
 func _ready():
-	position = start_position
-	player_color = player_color if player_color else Color(randf(), randf(), randf(), .5)
-	target_shader.set_shader_parameter('player_color', player_color)
-
+	target_shader.set_shader_parameter('player_color', controlling_player.player_color)
+	print("Player input prefix: " + controlling_player.get_input_prefix())
 	collision_shape.shape.size = observation_area
 	sprite.scale.x = observation_area.x / sprite.texture.get_width() # 480.0
 	sprite.scale.y = observation_area.y / sprite.texture.get_height()
 
-	light_cone.color = player_color
+	light_cone.color = controlling_player.player_color
 	light_cone.color.a = .5
 
 	sensitivity_timer.wait_time = sensitivity
 
 
 func _input(event):
-	if (event.is_action_pressed("ui_select")):
+	if (event.is_action_pressed(controlling_player.get_input_prefix() + "_select")):
 		# Enable player
-		if (!active):
-			active = true
+		if (!controlling_player.active):
+			controlling_player.active = true
 			light_cone.modulate.a = .5
 		elif is_observing:
 			is_observing = false
@@ -82,15 +67,15 @@ func _process(_delta):
 
 
 func _physics_process(_delta: float) -> void:
-	if (!active):
+	if (!controlling_player.active):
 		return
 	# Move target relative to player position
 	if !is_observing:
 		target.velocity = Vector2(
-			Input.get_action_strength("ui_right")
-			- Input.get_action_strength("ui_left"),
-			Input.get_action_strength("ui_down")
-			- Input.get_action_strength("ui_up")
+			Input.get_action_strength(controlling_player.get_input_prefix() + "_right")
+			- Input.get_action_strength(controlling_player.get_input_prefix() + "_left"),
+			Input.get_action_strength(controlling_player.get_input_prefix() + "_down")
+			- Input.get_action_strength(controlling_player.get_input_prefix() + "_up")
 		) * slew_speed
 	else:
 		target.velocity = Vector2.ZERO
@@ -142,7 +127,7 @@ func rotate_relative_to_background(rotation_speed) -> void:
 
 
 func _on_inactive_timeout_timeout() -> void:
-	active = false
+	controlling_player.active = false
 	is_observing = false
 	target.position = Vector2.ZERO
 	light_cone.polygon = draw_arms()

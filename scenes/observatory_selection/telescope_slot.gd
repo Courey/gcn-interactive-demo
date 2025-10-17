@@ -25,7 +25,7 @@ func _button_pressed() -> void:
 func deselect():
 	PlayerOutline.hide()
 
-func player_hover(player:Player):
+func player_hover(player:PlayerResource):
 	if is_node_ready():
 		PlayerOutline.default_color = player.player_color
 		player_labels[player.id -1].label_settings.font_color = player.player_color

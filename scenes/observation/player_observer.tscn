@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://jdk6c6id5gv"]
 
-[ext_resource type="Script" uid="uid://b31gvy8j77mdj" path="res://player.gd" id="1_i3pqv"]
+[ext_resource type="Script" uid="uid://b31gvy8j77mdj" path="res://scenes/observation/player_observer.gd" id="1_i3pqv"]
 [ext_resource type="Shader" uid="uid://divubxgbnblr6" path="res://shaders/target_area.gdshader" id="2_onrkg"]
 [ext_resource type="Texture2D" uid="uid://degsa058e8pri" path="res://art/grey_circle.png" id="3_i3pqv"]
 
@@ -20,10 +20,8 @@ shader_parameter/speed = 2.0
 shader_parameter/contrast = 20.0
 shader_parameter/alpha_threshold = 0.2
 
-[node name="Player" type="Node2D"]
-z_index = 1
+[node name="PlayerObserver" type="Node2D"]
 script = ExtResource("1_i3pqv")
-observation_area = Vector2(100, 100)
 metadata/_edit_group_ = true
 
 [node name="LightCone" type="Polygon2D" parent="."]
@@ -39,6 +37,7 @@ debug_color = Color(0, 0.588235, 0.686275, 0.529412)
 
 [node name="Sprite" type="Sprite2D" parent="Target"]
 material = SubResource("ShaderMaterial_onrkg")
+scale = Vector2(0.042, 0.042)
 texture = ExtResource("3_i3pqv")
 
 [node name="InactiveTimeout" type="Timer" parent="."]
