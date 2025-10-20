@@ -11,6 +11,8 @@ var observatory_id: int
 var observatory: Telescope
 var ready:bool = false
 
+var observations = []
+
 
 func _init():
 	name = "Player%d" % id

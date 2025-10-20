@@ -25,7 +25,7 @@ func _ready():
 
 
 # Event based input. Ex: Ready up, join game,
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	for player in Global.PLAYERS:
 		# Player join session
 		if Input.is_action_just_pressed("%s_primary" % player.get_input_prefix()) && !player.active:
@@ -38,7 +38,7 @@ func _input(event: InputEvent) -> void:
 			# Start countdown clock to the Observation scene when all players are ready
 			var activePlayerCount = len(Utils.get_active_players())
 			if activePlayerCount > 0:
-				if len(Utils.get_active_players().filter(func (player): return player.ready)) == activePlayerCount:
+				if len(Utils.get_active_players().filter(func (p): return p.ready)) == activePlayerCount:
 					StartTimer.start()
 					CountdownLabel.visible = true
 				else:

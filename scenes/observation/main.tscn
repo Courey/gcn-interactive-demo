@@ -28,41 +28,25 @@ SELECTED_OFFSET = 1
 
 [node name="PlayerObserver1" parent="PlayerObservers" instance=ExtResource("2_h2yge")]
 position = Vector2(960, 1059)
-observatory_id = 0
-slew_speed = 300.0
-sensitivity = 1
 observation_area = Vector2(150, 50)
-wavelength = 500
 controlling_player = ExtResource("4_u0tbu")
 
 [node name="PlayerObserver2" parent="PlayerObservers" instance=ExtResource("2_h2yge")]
 position = Vector2(440, 537)
 rotation = 1.5708
-observatory_id = 0
-slew_speed = 300.0
-sensitivity = 1
 observation_area = Vector2(150, 50)
-wavelength = 500
 controlling_player = ExtResource("5_g4oh8")
 
 [node name="PlayerObserver3" parent="PlayerObservers" instance=ExtResource("2_h2yge")]
 position = Vector2(961, 21)
 rotation = 3.14159
-observatory_id = 0
-slew_speed = 300.0
-sensitivity = 1
 observation_area = Vector2(150, 50)
-wavelength = 500
 controlling_player = ExtResource("6_xq46r")
 
 [node name="PlayerObserver4" parent="PlayerObservers" instance=ExtResource("2_h2yge")]
 position = Vector2(1480, 537)
 rotation = -1.5708
-observatory_id = 0
-slew_speed = 300.0
-sensitivity = 1
 observation_area = Vector2(150, 50)
-wavelength = 500
 controlling_player = ExtResource("7_p2vm5")
 
 [node name="ColorRect" type="ColorRect" parent="."]

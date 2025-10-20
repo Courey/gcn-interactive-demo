@@ -2,7 +2,6 @@ class_name PlayerObserver extends Node2D
 
 ## Selected Obeservatory
 @export var observatory_id:int
-#@export var selected: bool = false
 
 # Player Stats, these will be determined by Observatory selection screen
 @export var slew_speed := 300.0
