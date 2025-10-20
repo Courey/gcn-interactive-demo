@@ -37,13 +37,16 @@ func _ready():
 	light_cone.color = controlling_player.player_color
 	light_cone.color.a = .5
 
+	if !controlling_player.active:
+		visible = false
+
 	sensitivity_timer.wait_time = sensitivity
 
 
 func _input(event):
 	if (event.is_action_pressed("%s_primary" % controlling_player.get_input_prefix())):
 		# Enable player
-		if (!controlling_player.active):
+		if !controlling_player.active:
 			controlling_player.active = true
 			light_cone.modulate.a = .5
 		elif is_observing:

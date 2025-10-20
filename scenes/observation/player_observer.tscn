@@ -22,6 +22,11 @@ shader_parameter/alpha_threshold = 0.2
 
 [node name="PlayerObserver" type="Node2D"]
 script = ExtResource("1_i3pqv")
+observatory_id = null
+slew_speed = null
+sensitivity = null
+observation_area = null
+wavelength = null
 metadata/_edit_group_ = true
 
 [node name="LightCone" type="Polygon2D" parent="."]
