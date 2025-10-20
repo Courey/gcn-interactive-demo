@@ -30,7 +30,6 @@ var is_observing := false
 
 func _ready():
 	target_shader.set_shader_parameter('player_color', controlling_player.player_color)
-	print("Player input prefix: " + controlling_player.get_input_prefix())
 	collision_shape.shape.size = observation_area
 	sprite.scale.x = observation_area.x / sprite.texture.get_width() # 480.0
 	sprite.scale.y = observation_area.y / sprite.texture.get_height()

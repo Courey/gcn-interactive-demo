@@ -1,6 +1,6 @@
 extends Node
 
-var transition_scene: PackedScene = preload("res://scene_transition.tscn")
+var transition_scene: PackedScene = preload("res://scenes/scene_transition/scene_transition.tscn")
 var current_scene: Node = null
 
 func change_scene_with_transition(previous_scene: Node, next_scene: PackedScene):
@@ -19,11 +19,7 @@ func change_scene_with_transition(previous_scene: Node, next_scene: PackedScene)
 	if current_scene:
 		current_scene.queue_free()
 
-	print("Next scene resource:")
-	print(next_scene)
 	var new_scene = next_scene.instantiate()
-	print("New scene resource name: ")
-	print(new_scene.name)
 	get_tree().get_root().add_child(new_scene)
 	current_scene = new_scene
 
