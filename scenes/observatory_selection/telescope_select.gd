@@ -24,35 +24,33 @@ func _ready():
 		Grid.add_child(new_telescope)
 
 
+# Event based input. Ex: Ready up, join game,
 func _input(event: InputEvent) -> void:
-	var activePLayerCount = len(Utils.get_active_players())
-	if activePLayerCount > 0:
-		if len(Utils.get_active_players().filter(func (player): return player.ready)) == activePLayerCount:
-			StartTimer.start()
-		else:
-			StartTimer.stop()
+	for player in Global.PLAYERS:
+		# Player join session
+		if Input.is_action_just_pressed("%s_primary" % player.get_input_prefix()) && !player.active:
+			player.toggle_active()
+			displays[player.id - 1].toggle_ready_display()
+		# Player ready state checks
+		elif Input.is_action_just_pressed("%s_primary" % player.get_input_prefix()) && player.active:
+			player.toggle_ready()
+
+			# Start countdown clock to the Observation scene when all players are ready
+			var activePlayerCount = len(Utils.get_active_players())
+			if activePlayerCount > 0:
+				if len(Utils.get_active_players().filter(func (player): return player.ready)) == activePlayerCount:
+					StartTimer.start()
+					CountdownLabel.visible = true
+				else:
+					StartTimer.stop()
+					CountdownLabel.visible = false
 
 
 func _process(_delta):
-	for player in Utils.get_inactive_players():
-		var playerPrefix = player.get_input_prefix()
-		for action in InputMap.get_actions().filter(
-				func (action:StringName): return action.begins_with("%s" %  playerPrefix)
-			):
-			if Input.is_action_just_pressed(action):
-				player.toggle_active()
-				displays[player.id - 1].toggle_ready_display()
-		if player.active:
-			return
-
 	for player in Utils.get_active_players():
-		var playerPrefix = player.get_input_prefix()
-		if Input.is_action_just_pressed("%s_select" % playerPrefix):
-			player.ready = !player.ready
-
-		if player.ready:
+		if player.active && player.ready:
 			continue
-
+		var playerPrefix = player.get_input_prefix()
 		if Input.is_action_just_pressed("%s_up" % playerPrefix):
 			player.observatory_id -= GRID_COLUMNS % GRID_COLUMNS
 		elif Input.is_action_just_pressed("%s_down" % playerPrefix):
@@ -64,10 +62,11 @@ func _process(_delta):
 
 		player.observatory = Grid.telescopes[player.observatory_id]
 
-	CountdownLabel.text = str(int(StartTimer.time_left))
+	if CountdownLabel.visible:
+		CountdownLabel.text = "Starting in %s..." % str(int(StartTimer.time_left))
 
 func _on_start_timer_timeout() -> void:
 	SceneManager.change_scene_with_transition(
 		self,
 		load("res://scenes/observation/main.tscn")
-	) # Replace with function body.
+	)

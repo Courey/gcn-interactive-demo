@@ -42,7 +42,7 @@ func _ready():
 
 
 func _input(event):
-	if (event.is_action_pressed(controlling_player.get_input_prefix() + "_select")):
+	if (event.is_action_pressed("%s_primary" % controlling_player.get_input_prefix())):
 		# Enable player
 		if (!controlling_player.active):
 			controlling_player.active = true

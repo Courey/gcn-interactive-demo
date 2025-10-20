@@ -15,12 +15,12 @@ var ready:bool = false
 func _init():
 	name = "Player%d" % id
 	input_prefix = "p%d" % id
-	#active = true
-
 
 func get_input_prefix():
 	return "p%d" % id
 
-
 func toggle_active():
 	active = !active
+
+func toggle_ready():
+	ready = !ready

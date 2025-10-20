@@ -237,5 +237,5 @@ color = Color(0.337255, 1, 1, 0.768627)
 
 [node name="ReadyUpLabel" type="Label" parent="."]
 layout_mode = 2
-text = "Press Any Button To Join"
+text = "Press A To Join"
 horizontal_alignment = 1
