@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Telescope" load_steps=2 format=3 uid="uid://hwwqgt24pvrb"]
 
-[ext_resource type="Script" uid="uid://b70rxpxqa6sko" path="res://scenes/observatory_selection/telescope.gd" id="1_antlb"]
+[ext_resource type="Script" uid="uid://b70rxpxqa6sko" path="res://scripts/telescope.gd" id="1_antlb"]
 
 [resource]
 script = ExtResource("1_antlb")

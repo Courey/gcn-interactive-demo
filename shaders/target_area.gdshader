@@ -12,7 +12,6 @@ uniform float contrast: hint_range(1.0, 50.0, 0.01) = 20.0;
 uniform float alpha_threshold:hint_range(0.0, 1.0, 0.1) = 0.2;
 
 
-
 void fragment() {
     // Distance from center (works well if UVs fill the shape)
     float dist_to_edge = min(min(UV.x, 1.0 - UV.x), min(UV.y, 1.0 - UV.y));

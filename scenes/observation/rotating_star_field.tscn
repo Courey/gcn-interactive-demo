@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://ck57c88aqqfx2"]
 
 [ext_resource type="Shader" uid="uid://bw6fq2c45xr06" path="res://shaders/large_star_field.gdshader" id="1_bbi0e"]
-[ext_resource type="Script" uid="uid://b3f0bc4psw6qs" path="res://scenes/observation/rotating_star_field.gd" id="1_c1ipb"]
+[ext_resource type="Script" uid="uid://b3f0bc4psw6qs" path="res://scripts/observation/rotating_star_field.gd" id="1_c1ipb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c1ipb"]
 
