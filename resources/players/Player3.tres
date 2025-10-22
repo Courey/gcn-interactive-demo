@@ -1,11 +1,9 @@
 [gd_resource type="Resource" script_class="PlayerResource" load_steps=2 format=3 uid="uid://nxdid1t8m7go"]
 
-[ext_resource type="Script" path="res://resources/player_resource.gd" id="1_lqqjm"]
+[ext_resource type="Script" uid="uid://bprwvxh3b5myt" path="res://resources/player_resource.gd" id="1_lqqjm"]
 
 [resource]
 script = ExtResource("1_lqqjm")
 id = 3
 player_color = Color(0, 0, 1, 1)
 metadata/_custom_type_script = "uid://bprwvxh3b5myt"
-metadata/input_prefix = "p3"
-metadata/id = 3
