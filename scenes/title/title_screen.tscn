@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://duvh77weda0w"]
 
-[ext_resource type="Script" uid="uid://b2e2yvs8wegth" path="res://scenes/title screen/title_screen.gd" id="1_v6p8y"]
+[ext_resource type="Script" uid="uid://b2e2yvs8wegth" path="res://scripts/title/title_screen.gd" id="1_05wk3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1s85s"]
 font_size = 100
@@ -20,7 +20,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("1_v6p8y")
+script = ExtResource("1_05wk3")
 
 [node name="Background_Placeholder" type="ColorRect" parent="."]
 layout_mode = 1

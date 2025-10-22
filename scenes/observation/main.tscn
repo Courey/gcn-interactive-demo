@@ -1,13 +1,13 @@
 [gd_scene load_steps=11 format=3 uid="uid://c0yvffnohn8tx"]
 
-[ext_resource type="Script" uid="uid://bi1pxjo2rj311" path="res://scenes/observation/main.gd" id="1_64v3t"]
+[ext_resource type="Script" uid="uid://bi1pxjo2rj311" path="res://scripts/observation/main.gd" id="1_64v3t"]
 [ext_resource type="PackedScene" uid="uid://ck57c88aqqfx2" path="res://scenes/observation/rotating_star_field.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://jdk6c6id5gv" path="res://scenes/observation/player_observer.tscn" id="2_h2yge"]
 [ext_resource type="Shader" uid="uid://ba6xcygwib32b" path="res://shaders/transparent_circle.gdshader" id="4_1bvp3"]
-[ext_resource type="Resource" uid="uid://dgtwp45fxqhdi" path="res://resources/Player1.tres" id="4_u0tbu"]
-[ext_resource type="Resource" uid="uid://cp774eauo6qyo" path="res://resources/Player2.tres" id="5_g4oh8"]
-[ext_resource type="Resource" uid="uid://nxdid1t8m7go" path="res://resources/Player3.tres" id="6_xq46r"]
-[ext_resource type="Resource" uid="uid://c6jxup0s2ou4r" path="res://resources/Player4.tres" id="7_p2vm5"]
+[ext_resource type="Resource" uid="uid://dgtwp45fxqhdi" path="res://resources/players/Player1.tres" id="4_u0tbu"]
+[ext_resource type="Resource" uid="uid://cp774eauo6qyo" path="res://resources/players/Player2.tres" id="5_g4oh8"]
+[ext_resource type="Resource" uid="uid://nxdid1t8m7go" path="res://resources/players/Player3.tres" id="6_xq46r"]
+[ext_resource type="Resource" uid="uid://c6jxup0s2ou4r" path="res://resources/players/Player4.tres" id="7_p2vm5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lquwl"]
 shader = ExtResource("4_1bvp3")

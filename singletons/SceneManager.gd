@@ -1,6 +1,6 @@
 extends Node
 
-var transition_scene: PackedScene = preload("res://scenes/scene_transition/scene_transition.tscn")
+var transition_scene: PackedScene = preload("res://scenes/transition/scene_transition.tscn")
 var current_scene: Node = null
 
 func change_scene_with_transition(previous_scene: Node, next_scene: PackedScene):

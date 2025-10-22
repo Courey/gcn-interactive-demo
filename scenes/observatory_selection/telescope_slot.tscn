@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bug6q8xv6do8y"]
 
 [ext_resource type="Texture2D" uid="uid://isea6hpa5fi" path="res://art/slot.png" id="1_bgg7d"]
-[ext_resource type="Script" uid="uid://di5v0sxol7yvd" path="res://scenes/observatory_selection/telescope_slot.gd" id="2_anh4m"]
-[ext_resource type="Resource" uid="uid://d3hhvy6lacsap" path="res://resources/obs_Hubble.tres" id="3_ieoab"]
+[ext_resource type="Script" uid="uid://di5v0sxol7yvd" path="res://scripts/observatory_selection/telescope_slot.gd" id="2_anh4m"]
+[ext_resource type="Resource" uid="uid://d3hhvy6lacsap" path="res://resources/observatories/Hubble.tres" id="3_ieoab"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_anh4m"]
 resource_local_to_scene = true
