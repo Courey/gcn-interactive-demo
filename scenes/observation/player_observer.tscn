@@ -41,7 +41,7 @@ scale = Vector2(0.042, 0.042)
 texture = ExtResource("3_i3pqv")
 
 [node name="InactiveTimeout" type="Timer" parent="."]
-wait_time = 15.0
+wait_time = 60.0
 one_shot = true
 
 [node name="SensitivityTimer" type="Timer" parent="."]

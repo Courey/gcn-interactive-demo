@@ -11,8 +11,14 @@ var observatory_id: int
 var observatory: Telescope
 var ready:bool = false
 
+## Observations:
+# {
+	# obsStart: beginning time in seconds,
+	# obsEnd: end time
+	# wavelength: some representation of the band observed
+	# eventId: id to track which event the observation is part of
+# }
 var observations = []
-
 
 func _init():
 	name = "Player%d" % id
@@ -26,3 +32,6 @@ func toggle_active():
 
 func toggle_ready():
 	ready = !ready
+
+func add_observation(observation):
+	observations.push(observation)

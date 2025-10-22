@@ -26,6 +26,10 @@ signal abort
 
 var is_observing := false
 
+var currentObsId:int
+var currentObsStart:float
+var currentObsEnd:float
+
 
 func _ready():
 	target_shader.set_shader_parameter('player_color', controlling_player.player_color)

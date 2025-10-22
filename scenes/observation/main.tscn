@@ -18,7 +18,6 @@ font_size = 100
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_64v3t")
-SELECTED_OFFSET = 1
 
 [node name="RotatingStarField" parent="." instance=ExtResource("1_ig7tw")]
 
@@ -56,6 +55,7 @@ offset_bottom = 1080.0
 color = Color(0, 0, 0, 1)
 
 [node name="Score" type="Label" parent="."]
+visible = false
 offset_right = 480.0
 offset_bottom = 230.0
 text = "Score:"
@@ -68,3 +68,9 @@ visible = false
 position = Vector2(2, 0)
 build_mode = 1
 polygon = PackedVector2Array(960, -6, 1070, 4, 1183, 40, 1286, 98, 1363, 169, 1434, 268, 1477, 373, 1503, 454, 1503, 540, 1488, 675, 1447, 778, 1344, 934, 1282, 984, 1209, 1035, 1151, 1054, 1074, 1074, 969, 1082, 862, 1076, 765, 1057, 682, 1012, 604, 960, 527, 876, 478, 804, 431, 696, 400, 540, 416, 448, 448, 338, 493, 259, 547, 178, 624, 115, 684, 68, 783, 26)
+
+[node name="SessionTimer" type="Timer" parent="."]
+wait_time = 180.0
+one_shot = true
+
+[connection signal="timeout" from="SessionTimer" to="." method="_on_session_timer_timeout"]

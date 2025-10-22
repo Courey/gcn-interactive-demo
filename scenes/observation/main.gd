@@ -2,6 +2,7 @@ extends Node2D
 
 var score = 0
 var Event = preload("res://scenes/event/event.tscn")
+var nextScene = preload("res://scenes/results/results.tscn")
 
 const OFFSET_MAP = [
 	Vector2(960,540), #This should be dynamic
@@ -17,9 +18,12 @@ const OFFSET_MAP = [
 @onready var Events = $Events as Node2D
 @onready var PlayerObservers = $PlayerObservers as Node2D
 @onready var RotatingStarField = $RotatingStarField
+@onready var SessionTimer = $SessionTimer as Timer
 
 var target_map: Dictionary = {}
 var scores: Dictionary = {}
+
+var eventIdInc = 0
 
 
 func _ready():
@@ -38,6 +42,8 @@ func _ready():
 
 	Events.position = Global.ROTATION_AXIS
 
+	SessionTimer.start()
+
 
 func _process(delta: float) -> void:
 	var rotation_speed = SPEED * delta
@@ -54,9 +60,12 @@ func sum(accum, number):
 
 
 func create_new_event():
+	eventIdInc+=1
 	var newEvent = Event.instantiate()
+
 	newEvent.set("location", get_random_point())
 	newEvent.set("points", randi_range(10,20))
+	newEvent.set("id", eventIdInc)
 	Events.add_child(newEvent)
 	newEvent.connect('player_over', _on_event_player_over)
 	newEvent.connect('player_exited', _on_player_exited)
@@ -84,6 +93,10 @@ func _on_player_observe(playerObserver:PlayerObserver):
 	playerObserver.sensitivity_timer.start()
 
 func rotate_observing_players(rotation_speed):
-	for playerObserver in PlayerObservers.get_children().filter(func(child):return child is PlayerObserver):
-		if playerObserver.is_observing:
-			playerObserver.rotate_relative_to_background(rotation_speed)
+	for playerObserver in PlayerObservers.get_children().filter(func(child):return child is PlayerObserver && child.is_observing):
+		playerObserver.rotate_relative_to_background(rotation_speed)
+		#if playerObserver.is_observing:
+
+
+func _on_session_timer_timeout() -> void:
+	SceneManager.change_scene_with_transition(self, nextScene)
