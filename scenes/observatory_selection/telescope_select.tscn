@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://igr5taqly5ch"]
 
 [ext_resource type="Script" uid="uid://busak7hd601ln" path="res://scripts/observatory_selection/telescope_select.gd" id="1_ge3vk"]
-[ext_resource type="Script" uid="uid://b70rxpxqa6sko" path="res://scripts/observatory_selection/telescope.gd" id="1_rpyu1"]
+[ext_resource type="Script" uid="uid://b70rxpxqa6sko" path="res://scripts/telescope.gd" id="1_rpyu1"]
 [ext_resource type="Script" uid="uid://of4mt0dqm8sw" path="res://scripts/observatory_selection/telescope_grid.gd" id="3_8h3wp"]
 [ext_resource type="PackedScene" uid="uid://cdp8ukqiyccgm" path="res://scenes/observatory_selection/selected_telescope_display.tscn" id="4_jm8ys"]
 [ext_resource type="PackedScene" uid="uid://bug6q8xv6do8y" path="res://scenes/observatory_selection/telescope_slot.tscn" id="4_v0ka8"]

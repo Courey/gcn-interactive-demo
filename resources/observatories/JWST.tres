@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Telescope" load_steps=3 format=3 uid="uid://bauqjtnne5db8"]
 
-[ext_resource type="Script" uid="uid://b70rxpxqa6sko" path="res://scripts/observatory_selection/telescope.gd" id="1_cy2pb"]
+[ext_resource type="Script" uid="uid://b70rxpxqa6sko" path="res://scripts/telescope.gd" id="1_cy2pb"]
 [ext_resource type="Texture2D" uid="uid://lq5tpry7o014" path="res://art/TestingImages/Webb.png" id="1_flhwl"]
 
 [resource]
