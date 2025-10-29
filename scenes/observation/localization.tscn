@@ -6,10 +6,12 @@
 
 [node name="Localization" type="Node2D"]
 script = ExtResource("1_evtbj")
+LocalizationType = 2
 
 [node name="MaskArea" type="Area2D" parent="."]
 
 [node name="Polygon2D" type="Polygon2D" parent="MaskArea"]
+visible = false
 color = Color(0.454902, 0.172549, 1, 0.34902)
 texture = ExtResource("2_qfcqe")
 polygon = PackedVector2Array(145, 195, 449, 57, 963, 43, 1267, 92, 1312, 494, 1127, 807, 986, 1058, 148, 918, 76, 622)
