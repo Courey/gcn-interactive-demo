@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Telescope" load_steps=2 format=3 uid="uid://buws4betsnvia"]
+
+[ext_resource type="Script" uid="uid://b70rxpxqa6sko" path="res://scripts/telescope.gd" id="1_yubgo"]
+
+[resource]
+script = ExtResource("1_yubgo")
+telescope_name = ""
+position = 0
+field_of_view = 0.0
+sensitivity = 0
+slew_speed = 0.0
+observation_delay = 0
+band = Array[float]([])
+metadata/_custom_type_script = "uid://b70rxpxqa6sko"

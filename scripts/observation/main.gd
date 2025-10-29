@@ -3,6 +3,7 @@ extends Node2D
 var score = 0
 var Event = preload("res://scenes/event/event.tscn")
 var nextScene = preload("res://scenes/results/results.tscn")
+var localization = preload("res://scenes/observation/localization.tscn")
 
 const OFFSET_MAP = [
 	Vector2(960,540), #This should be dynamic
@@ -41,7 +42,7 @@ func _ready():
 	RotatingStarField.initialize_with_set_values()
 
 	Events.position = Global.ROTATION_AXIS
-
+	create_new_localization()
 	SessionTimer.start()
 
 
@@ -69,6 +70,10 @@ func create_new_event():
 	Events.add_child(newEvent)
 	newEvent.connect('player_over', _on_event_player_over)
 	newEvent.connect('player_exited', _on_player_exited)
+
+func create_new_localization():
+	var newLocalization = localization.instantiate()
+	Events.add_child(newLocalization)
 
 
 func get_random_point() -> Vector2:

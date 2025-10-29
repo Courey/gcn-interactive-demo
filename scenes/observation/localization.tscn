@@ -1,19 +1,22 @@
 [gd_scene load_steps=4 format=3 uid="uid://dc0exh5068ov6"]
 
 [ext_resource type="Script" uid="uid://bq71ks762jcx0" path="res://scripts/observation/localization.gd" id="1_evtbj"]
-[ext_resource type="Shader" uid="uid://br87mk1imamdd" path="res://shaders/reveal.gdshader" id="2_qu6n7"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qfcqe"]
-resource_local_to_scene = true
-shader = ExtResource("2_qu6n7")
-shader_parameter/reveal_radius = 20.0
+[ext_resource type="Texture2D" uid="uid://bvd68myewkjng" path="res://art/grey_square.png" id="2_qfcqe"]
+[ext_resource type="PackedScene" uid="uid://cf8q2ceyjr4aa" path="res://scenes/event/event.tscn" id="3_qfcqe"]
 
 [node name="Localization" type="Node2D"]
 script = ExtResource("1_evtbj")
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-material = SubResource("ShaderMaterial_qfcqe")
+[node name="MaskArea" type="Area2D" parent="."]
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Polygon2D" type="Polygon2D" parent="MaskArea"]
+color = Color(0.454902, 0.172549, 1, 0.34902)
+texture = ExtResource("2_qfcqe")
+polygon = PackedVector2Array(145, 195, 449, 57, 963, 43, 1267, 92, 1312, 494, 1127, 807, 986, 1058, 148, 918, 76, 622)
+uv = PackedVector2Array(145, 195, 449, 57, 963, 43, 1267, 92, 1312, 494, 1127, 807, 986, 1058, 148, 918, 76, 622)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+[node name="Event" parent="." instance=ExtResource("3_qfcqe")]
+visible = false
+position = Vector2(408, 392)
+location = Vector2(408, 392)
+decay_rate = 1

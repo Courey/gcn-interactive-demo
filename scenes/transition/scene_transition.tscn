@@ -1,6 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://3edv8rlh7pbc"]
-
-[ext_resource type="Script" uid="uid://cho4wciqvtoln" path="res://scripts/transition/scene_transition_rect.gd" id="1_kphkl"]
+[gd_scene load_steps=4 format=3 uid="uid://3edv8rlh7pbc"]
 
 [sub_resource type="Animation" id="Animation_sk5ai"]
 resource_name = "Fade"
@@ -46,7 +44,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
-script = ExtResource("1_kphkl")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

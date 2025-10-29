@@ -10,5 +10,6 @@ field_of_view = 47.0
 sensitivity = 0
 slew_speed = 7.0
 observation_delay = 0
-band = Array[float]([400.0, 900.0])
+band = Array[int]([400, 900])
+type = "1m class survey"
 metadata/_custom_type_script = "uid://b70rxpxqa6sko"
