@@ -32,26 +32,20 @@ func _ready() -> void:
 	elif LocalizationType == 1:
 		Polygon = generate_circular_polygon(500, Vector2.ZERO)
 	else:
-
 		var poly1 = generate_circular_polygon(500, Vector2.ZERO)
 		var poly2 = generate_circular_polygon(400, Vector2(0,500))
-		var clipped_array = Geometry2D.clip_polygons(poly2.polygon, poly1.polygon)
-		#Polygon.polygon
-		Polygon.polygon = clipped_array
-		Polygon.uv = clipped_array
+		var clipped_array = Geometry2D.clip_polygons(poly1.polygon, poly2.polygon)
+		Polygon.polygon = clipped_array[0]
+		Polygon.uv = clipped_array[0]
 		MaskArea.add_child(Polygon)
-		#Polygon.uv = clipped_array
+		poly1.queue_free()
+		poly2.queue_free()
 
 	image = Image.create_empty(1920, 1080, false, Image.FORMAT_RGBA8)
 	image.fill(Polygon.color)
 	mask_tex = ImageTexture.create_from_image(image)
 
 	Polygon.texture = mask_tex
-	print(Geometry2D.is_point_in_polygon(SourceEvent.position, Polygon.polygon))
-
-	#var greater_polygon = generate_circular_polygon(100)
-	#var smaller_polygon = generate_circular_polygon(80)
-
 
 
 func _input(event: InputEvent) -> void:
