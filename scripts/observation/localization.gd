@@ -2,11 +2,10 @@ extends Node2D
 
 
 @onready var MaskArea = $MaskArea
-#@onready var Polygon = $MaskArea/Polygon2D as Polygon2D
 @onready var SourceEvent = $Event
 @onready var PolyTexture = preload("res://art/grey_square.png")
 
-var Polygon:Polygon2D = Polygon2D.new()
+var RoundedPolygon: RoundedPolygon2D = RoundedPolygon2D.new()
 
 
 ## (Global?) location of event, around which the masking area will be drawn
@@ -16,6 +15,8 @@ var Polygon:Polygon2D = Polygon2D.new()
 	"FERMI_GBM:1", # Larger circle
 	"LVK:2" # Banana shape
 ) var LocalizationType = 0
+@export var Radius:int = 100
+@export var InnerRadius:int = 50
 
 var reveal_size:Vector2 = Vector2(150,50)
 
@@ -27,25 +28,34 @@ var mask_tex : ImageTexture:
 
 
 func _ready() -> void:
+	var polygon:PackedVector2Array = []
 	if LocalizationType == 0:
-		Polygon = generate_circular_polygon(100, Vector2.ZERO)
+		polygon = generate_circular_polygon(Radius, Vector2.ZERO).polygon
 	elif LocalizationType == 1:
-		Polygon = generate_circular_polygon(500, Vector2.ZERO)
+		polygon = generate_circular_polygon(Radius, Vector2.ZERO).polygon
 	else:
-		var poly1 = generate_circular_polygon(500, Vector2.ZERO)
-		var poly2 = generate_circular_polygon(400, Vector2(0,500))
+		var poly1 = generate_circular_polygon(Radius, Vector2.ZERO)
+		var poly2 = generate_circular_polygon(InnerRadius, Vector2(0,Radius))
 		var clipped_array = Geometry2D.clip_polygons(poly1.polygon, poly2.polygon)
-		Polygon.polygon = clipped_array[0]
-		Polygon.uv = clipped_array[0]
-		MaskArea.add_child(Polygon)
+		polygon = clipped_array[0]
+
 		poly1.queue_free()
 		poly2.queue_free()
 
+	RoundedPolygon.polygon = polygon
+	RoundedPolygon.uv = polygon
+
+	MaskArea.add_child(RoundedPolygon)
 	image = Image.create_empty(1920, 1080, false, Image.FORMAT_RGBA8)
-	image.fill(Polygon.color)
+	image.fill(RoundedPolygon.color)
 	mask_tex = ImageTexture.create_from_image(image)
 
-	Polygon.texture = mask_tex
+	RoundedPolygon.texture = mask_tex
+
+	RoundedPolygon.color = Color(randf(),randf(),randf(),.5)
+	RoundedPolygon.corner_radius = 50
+	RoundedPolygon.corner_detail = 20
+	RoundedPolygon.texture = mask_tex
 
 
 func _input(event: InputEvent) -> void:
@@ -70,10 +80,8 @@ func interact_at(pos:Vector2):
 func generate_circular_polygon(radius:int, offset_vector:Vector2) -> Polygon2D:
 	var points = 24
 	var polygon = Polygon2D.new()
-	MaskArea.add_child(polygon)
 	polygon.color = Color(randf(),randf(),randf(),.5)
 	polygon.texture = PolyTexture
-	#polygon.texture.resource_local_to_scene = true
 	var rotation_angle = (2 * PI) / points # Radians
 	var vect = Vector2(radius,0)
 	var vect_array:PackedVector2Array = []
