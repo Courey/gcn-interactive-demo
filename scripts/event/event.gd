@@ -10,8 +10,6 @@ signal player_exited
 @onready var decay_timer = $DecayTimer as Timer
 @onready var sprite = $Sprite2D as Sprite2D
 
-var id:int = 0
-
 
 func _ready() -> void:
 	global_position = location

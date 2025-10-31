@@ -5,12 +5,11 @@
 
 [node name="Localization" type="Node2D"]
 script = ExtResource("1_evtbj")
-LocalizationType = 2
+LocalizationType = 1
 
 [node name="MaskArea" type="Area2D" parent="."]
 
 [node name="Event" parent="." instance=ExtResource("3_qfcqe")]
 visible = false
-position = Vector2(408, 392)
 location = Vector2(408, 392)
 decay_rate = 1

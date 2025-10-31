@@ -5,11 +5,6 @@ extends Node2D
 @onready var SourceEvent = $Event
 @onready var PolyTexture = preload("res://art/grey_square.png")
 
-var RoundedPolygon: RoundedPolygon2D = RoundedPolygon2D.new()
-
-
-## (Global?) location of event, around which the masking area will be drawn
-@export var EventLocation:Vector2
 @export_enum (
 	"Swift_BAT:", # Arcmin localization
 	"FERMI_GBM:1", # Larger circle
@@ -17,7 +12,10 @@ var RoundedPolygon: RoundedPolygon2D = RoundedPolygon2D.new()
 ) var LocalizationType = 0
 @export var Radius:int = 100
 @export var InnerRadius:int = 50
+@export var location: Vector2
 
+
+var RoundedPolygon: RoundedPolygon2D = RoundedPolygon2D.new()
 var reveal_size:Vector2 = Vector2(150,50)
 
 var image: Image
@@ -25,13 +23,16 @@ var mask_tex : ImageTexture:
 	set(value):
 		mask_tex = value
 		queue_redraw()
-
+var eventId:int
 
 func _ready() -> void:
+	global_position = location
 	var polygon:PackedVector2Array = []
 	if LocalizationType == 0:
+		SourceEvent.position = get_random_point_in_circle()
 		polygon = generate_circular_polygon(Radius, Vector2.ZERO).polygon
 	elif LocalizationType == 1:
+		SourceEvent.position = get_random_point_in_circle()
 		polygon = generate_circular_polygon(Radius, Vector2.ZERO).polygon
 	else:
 		var poly1 = generate_circular_polygon(Radius, Vector2.ZERO)
@@ -60,6 +61,11 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	# TODO: Update this to handle player inputs
+	if (Input.is_action_just_pressed("p1_primary") or
+		Input.is_action_just_pressed("p2_primary") or
+		Input.is_action_just_pressed("p3_primary") or
+		Input.is_action_just_pressed("p4_primary")):
+		print(event)
 	if event is InputEventMouseButton and event.is_pressed():
 		print("Mouse Click/Unclick at: ", event.position)
 		interact_at(event.position)
@@ -91,3 +97,10 @@ func generate_circular_polygon(radius:int, offset_vector:Vector2) -> Polygon2D:
 	polygon.polygon= vect_array
 	polygon.uv = vect_array
 	return polygon
+
+
+func get_random_point_in_circle() -> Vector2:
+	var l = randi_range(0, Radius)
+	var angle = randf_range(0, 2 * PI)
+	var vector = Vector2(l, 0)
+	return vector.rotated(angle)

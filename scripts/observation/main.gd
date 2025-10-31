@@ -27,6 +27,7 @@ var scores: Dictionary = {}
 var eventIdInc = 0
 
 
+
 func _ready():
 	randomize()
 
@@ -42,7 +43,6 @@ func _ready():
 	RotatingStarField.initialize_with_set_values()
 
 	Events.position = Global.ROTATION_AXIS
-	create_new_localization()
 	SessionTimer.start()
 
 
@@ -51,8 +51,9 @@ func _process(delta: float) -> void:
 	Events.rotate(rotation_speed)
 	rotate_observing_players(rotation_speed)
 	ScoreLabel.text = "Score: " + str(score)
+	# TODO: Make this use the new Localization scene instead of event
 	if (len(Events.get_children()) < EVENTS_LIMIT):
-		create_new_event()
+		create_new_localization()
 	score = scores.values().reduce(sum, 0)
 
 
@@ -71,8 +72,12 @@ func create_new_event():
 	newEvent.connect('player_over', _on_event_player_over)
 	newEvent.connect('player_exited', _on_player_exited)
 
+
 func create_new_localization():
+	eventIdInc+=1
 	var newLocalization = localization.instantiate()
+	newLocalization.set("location", get_random_point())
+	newLocalization.eventId = eventIdInc
 	Events.add_child(newLocalization)
 
 
@@ -93,14 +98,15 @@ func _on_player_exited(event:Node2D, playerObserver:PlayerObserver) -> void:
 
 
 func _on_player_observe(playerObserver:PlayerObserver):
+	# TODO: Rethink observation logic
 	for event in target_map[playerObserver.controlling_player.name]:
 		scores[playerObserver.controlling_player.name] += playerObserver.sensitivity * event.decay_rate
 	playerObserver.sensitivity_timer.start()
 
+
 func rotate_observing_players(rotation_speed):
 	for playerObserver in PlayerObservers.get_children().filter(func(child):return child is PlayerObserver && child.is_observing):
 		playerObserver.rotate_relative_to_background(rotation_speed)
-		#if playerObserver.is_observing:
 
 
 func _on_session_timer_timeout() -> void:

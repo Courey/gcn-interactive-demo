@@ -22,13 +22,15 @@ class_name PlayerObserver extends Node2D
 
 
 signal observe
-signal abort
+signal observation_ended
 
 var is_observing := false
 
-var currentObsId:int
+var currentObsId:int = 0
 var currentObsStart:float
 var currentObsEnd:float
+
+var observations = []
 
 
 func _ready():
@@ -55,11 +57,19 @@ func _input(event):
 		elif is_observing:
 			is_observing = false
 			sensitivity_timer.stop()
-			abort.emit(self)
+			currentObsEnd = Time.get_unix_time_from_system()
+			observations.append({
+				"id": currentObsId,
+				"start":currentObsStart,
+				"stop":currentObsEnd
+			})
+			#observation_ended.emit(self)
 		else:
 			is_observing = true
+			currentObsId += 1
 			observe.emit(self)
 			sensitivity_timer.start()
+			currentObsStart = Time.get_unix_time_from_system()
 		target_shader.set_shader_parameter('is_observing', is_observing)
 
 	# Restart the timeout counter for inactive players
