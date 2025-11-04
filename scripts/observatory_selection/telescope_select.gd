@@ -1,6 +1,6 @@
 extends Control
 
-const GRID_COLUMNS := 4
+var GRID_COLUMNS:int
 var grid: GridContainer
 var locked_in_indices := {}
 
@@ -17,7 +17,7 @@ var displays:Array[SelectedTelescopeDisplay] = []
 
 func _ready():
 	displays.append_array([SelectedDisplay1,SelectedDisplay2,SelectedDisplay3,SelectedDisplay4])
-
+	GRID_COLUMNS = Grid.columns
 	for telescope in Grid.telescopes as Array[Telescope]:
 		var new_telescope = telescopeSlot.instantiate()
 		new_telescope.observatory = telescope
@@ -52,13 +52,13 @@ func _process(_delta):
 			continue
 		var playerPrefix = player.get_input_prefix()
 		if Input.is_action_just_pressed("%s_up" % playerPrefix):
-			player.observatory_id -= GRID_COLUMNS % GRID_COLUMNS
+			player.observatory_id = (player.observatory_id - Grid.columns) % len(Grid.telescopes)
 		elif Input.is_action_just_pressed("%s_down" % playerPrefix):
-			player.observatory_id += GRID_COLUMNS % GRID_COLUMNS
+			player.observatory_id = (player.observatory_id + Grid.columns) % len(Grid.telescopes)
 		elif Input.is_action_just_pressed("%s_left" % playerPrefix):
-			player.observatory_id = (player.observatory_id - 1) % GRID_COLUMNS
+			player.observatory_id = (player.observatory_id - 1) % len(Grid.telescopes)
 		elif Input.is_action_just_pressed("%s_right" % playerPrefix):
-			player.observatory_id = (player.observatory_id + 1) % GRID_COLUMNS
+			player.observatory_id = (player.observatory_id + 1) % len(Grid.telescopes)
 
 		player.observatory = Grid.telescopes[player.observatory_id]
 

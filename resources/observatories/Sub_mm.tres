@@ -4,11 +4,12 @@
 
 [resource]
 script = ExtResource("1_ny3ji")
-telescope_name = ""
+telescope_name = "Sub milimeter"
 position = 0
 field_of_view = 0.0
 sensitivity = 0
 slew_speed = 0.0
 observation_delay = 0
-band = Array[float]([])
+band = Array[int]([])
+type = ""
 metadata/_custom_type_script = "uid://b70rxpxqa6sko"

@@ -1,5 +1,7 @@
 extends Control
 
+# TODO: Update scene to use a better graphic for the circular frame
+
 func _ready():
 	set_process_input(true)
 
