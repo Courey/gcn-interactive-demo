@@ -60,5 +60,4 @@ func typewriter_text_all(message: String, font: Font, pause_length: float):
 func label_config(label, font):
 	label.clear()
 	label.push_font(font)
-	#label.push_font_size(12)
 	label.push_color(Color8(39,156,41))
